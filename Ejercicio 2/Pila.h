@@ -14,5 +14,10 @@ private:     //a partir de aquí todos los miembros serán privados
 
 public:      //a patir de aquí todas las declaraciones serán de acceso público
   Pila(int cant, int tope1=0, int tope2=0); // Constructor
+  int insertar1(int elemento);
+  int insertar2(int elemento);
+  int suprimir(void);
+  void mostrar(void);
+  int vacia(void);
 };
 #endif
