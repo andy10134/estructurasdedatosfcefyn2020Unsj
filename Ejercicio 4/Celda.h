@@ -1,5 +1,5 @@
-#ifndef Celda_h 
-#define Celda_h
+#ifndef CELDA_H 
+#define CELDA_H
 #include <stdlib.h>
 
 class Celda{

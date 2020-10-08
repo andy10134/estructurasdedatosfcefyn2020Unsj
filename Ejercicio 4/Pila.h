@@ -1,5 +1,5 @@
-#ifndef Pila_h 
-#define Pila_h
+#ifndef PILA_H 
+#define PILA_H
 #include "Celda.h"
 
 using namespace std;
@@ -9,7 +9,7 @@ class Pila{
 	Celda *tope;
 	
 	public:
-        Pila(Celda* xtope=NULL, int xcant=0); // Constructor
+        Pila(Celda* xtope, int xcant); // Constructor
 		int vacia(void);
 		int insertar(int x);
 		int suprimir(void);

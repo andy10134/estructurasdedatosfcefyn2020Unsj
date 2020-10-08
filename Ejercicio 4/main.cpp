@@ -1,15 +1,16 @@
 #include <iostream>
 #include "Pila.h"
+#include "Pila.cpp"
 
 using namespace std;
 
 main(){
-	cout  <<  "holi"<<  "\n";
-	Pila p1(NULL, 0);
-	p1.insertar(1);
-	p1.insertar(2);
-	p1.insertar(3);
-	p1.mostrar();
-	//p1.suprimir();
-	//p1.mostrar();
+	
+	int n = 8;
+	int A[n][n];
+	int origen;
+	int destino;
+
+	cout << "Ingrese el Origen" << endl;
+	cin >> origen;
 }

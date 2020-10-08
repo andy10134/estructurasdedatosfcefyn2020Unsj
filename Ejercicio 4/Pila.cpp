@@ -1,6 +1,9 @@
 #include "Pila.h"
 #include <iostream>
 
+#include "Celda.h"
+#include "Celda.cpp"
+
 using namespace std;
 
 //Constructor
