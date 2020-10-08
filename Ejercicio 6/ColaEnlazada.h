@@ -15,6 +15,6 @@ public:      //a patir de aquí todas las declaraciones serán de acceso públic
   int insertar(int elemento);
   int suprimir(void);
   Celda* recuperaPr(void);
-  void recorrer(Celda *aux);
+  void recorrer(void);
 };
 #endif

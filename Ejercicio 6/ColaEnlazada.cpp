@@ -1,10 +1,11 @@
 #include "ColaEnlazada.h"
+#include "Celda.cpp"
 #include <iostream>
 
 using namespace std;
 
 //Constructor
-ColaEnlazada::ColaEnlazada(Celda *pr=NULL, Celda *ul=NULL, int cant){
+ColaEnlazada::ColaEnlazada(Celda* pr, Celda* ul, int cant){
     this -> pr = pr;
     this -> ul = ul;
     this -> cant = cant;
@@ -12,7 +13,7 @@ ColaEnlazada::ColaEnlazada(Celda *pr=NULL, Celda *ul=NULL, int cant){
 
 int ColaEnlazada::vacia(void)
 {
-    return( this -> cant );
+    return( this -> cant == 0);
 }
 
 int ColaEnlazada::insertar(int x)
@@ -62,11 +63,13 @@ Celda* ColaEnlazada::recuperaPr(void)
 {
     return(this -> pr);
 }
-void ColaEnlazada::recorrer(Celda *aux)
+void ColaEnlazada::recorrer(void)
 {
-    if (aux!=NULL)
+    Celda *aux;
+    aux = this -> pr;
+    while (aux!=NULL)
     { 
         cout<<aux->obtenerItem()<<endl;
-        recorrer(aux->obtenerSig());
+        aux = aux->obtenerSig();
     }
 }
