@@ -49,10 +49,13 @@ int ColaEnlazada::suprimir(void)
         x= this -> pr->obtenerItem();
         this -> pr= this -> pr->obtenerSig();
         this -> cant--;
-        /*If pr=null
-        ult:=null;
+        if ( this -> pr == NULL)
+        {
+            this -> ul= NULL;
+            
+        }
         free(aux);
-        return(x);*/ //wtf no entiendo que es esto
+        return(x); //wtf no entiendo que es esto
     }
 }
 Celda* ColaEnlazada::recuperaPr(void)
