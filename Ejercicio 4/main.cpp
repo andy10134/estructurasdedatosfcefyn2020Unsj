@@ -1,9 +1,6 @@
 #include <iostream>
 #include "Pila.h"
 #include "Pila.cpp"
-#include "Lugar.h"
-#include "Lugar.cpp"
-
 using namespace std;
 
 //Relacionar matriz
