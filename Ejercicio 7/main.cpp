@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    int frecCliente, atencionCaj, cant = 0, cant1 = 0, tiempoEspera = 0, cajero = 0, max = 0, reloj = 0, TMS = 90;
+    int frecCliente, atencionCaj, tiempoEspera = 0, cajero = 0, max = 0, reloj = 0, TMS = 90;
     ColaEnlazada cola = ColaEnlazada(0,0,0);
     cout<<"Ingrese tiempo de atencion de cajero"<<endl;
     cin>>atencionCaj;
@@ -18,12 +18,9 @@ int main()
         float random = (float) (rand()%11);
         random = random/10;
         float division = (float) 1/frecCliente;
-        cout<<"Random: "<<random<<endl;
-        cant1++;
         if ( random == division)
         {
             cola.insertar(reloj);
-            cant ++;
         }
         if(cajero == 0)
         {
@@ -47,7 +44,5 @@ int main()
         
     }
     cout<<"Tiempo de espera max: "<<max<<endl;
-    cout<<"cantidad de pibes en la cola: "<<cant<<endl;
-    cout<<"cantidad de pibes aleatorios: "<<cant1<<endl;
         
 }
