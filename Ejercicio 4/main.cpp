@@ -34,7 +34,7 @@ void inicializar(int x[8][8], string p[])
 	int i, j;
 
 	cout << endl;
-
+	//Inicializa el arreglo
 	p[0] = "Cordoba";
 	p[1] = "Villa Maria";
 	p[2] = "Rosario";
@@ -44,6 +44,7 @@ void inicializar(int x[8][8], string p[])
 	p[6] = "San Luis";
 	p[7] = "Mendoza";
 
+	//Cerea la matriz
 	for ( i = 0; i < 8; i++)
 	{
 		for ( j = 0; j < 8; j++)
@@ -52,6 +53,7 @@ void inicializar(int x[8][8], string p[])
 		}
 	}
 
+	//LLena la matriz con sus adyancencias
 	relacionar(x, 1-1, 2-1);
 	relacionar(x, 2-1, 3-1);
 	relacionar(x, 2-1, 7-1);
