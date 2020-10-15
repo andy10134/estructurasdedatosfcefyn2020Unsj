@@ -21,7 +21,6 @@ public:      //a patir de aquí todas las declaraciones serán de acceso públic
   int anterior(int posicion);
   void recorrer(void);
   void crear(void);
-  void vacia(void);
 };
 
 #endif
