@@ -95,8 +95,8 @@ int ListaEnlazada::suprimir(int posicion)
 {
     if (posicion > 0 && posicion <= this -> cant +1)
     {
-        Celda* anterior, aux;
-        int cont=1;
+        Celda* aux;
+        int cont=1, elemento;
         if(vacia())
         {
             cout<<"no se puede suprimir porque la lista esta vacia"<<endl;
@@ -105,12 +105,14 @@ int ListaEnlazada::suprimir(int posicion)
         {
             if (posicion == 1)
             {
-                aux = this -> cabeza->obtenerSig();
-
+                aux = this -> cabeza;
+                elemento = this -> cabeza->obtenerItem();
+                this -> cabeza = this -> cabeza->obtenerSig();
+                delete(aux);
             }
             else
             {
-                Celda* aux = this -> cabeza;
+                aux = this -> cabeza;
                 Celda* anterior = this -> cabeza;
                 while(cont != posicion)
                 {
@@ -118,18 +120,20 @@ int ListaEnlazada::suprimir(int posicion)
                     aux = aux->obtenerSig();
                     cont++;
                 }
-                anterior->cargaSig(nuevo);
-                nuevo->cargaSig(aux);
-                cout<<"El elemento ha sido insertado en el lugar que corresponde"<<endl;
-            }            
+                elemento = aux->obtenerItem();
+                anterior->cargaSig(aux->obtenerSig());
+                delete(aux);
+                cout<<"El elemento ha sido suprimido"<<endl; 
+            }       
         }
-        this -> cant ++;
+        this -> cant --;
+        return(elemento);
     }
     else
     {
         cout<<"POSICION INVALIDA"<<endl;
+        return(0);
     }
-    return(0);
 }
 
 int ListaEnlazada::recuperar(int posicion)
