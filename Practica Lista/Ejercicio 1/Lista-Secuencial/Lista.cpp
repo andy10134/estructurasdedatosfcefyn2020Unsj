@@ -6,55 +6,84 @@ using namespace std;
 //Constructor
   Lista::Lista(int cantMax) // Constructor
 {
-    this -> cantidad = 0;
-    this -> cantidadMaxima = cantMax;
+    this -> cantidadMax = cantMax;
     this -> items = new int[cantMax];
+    this -> tope = -1;
 }
 
 int Lista::vacia(void)
 {
-    return( this -> cantidad == 0);
+    return( this -> tope == -1);
 }
 
-int Lista::insertar(int x)
+//Insertar
+int Lista::insertar(int elemento, int posicion)
 {
-    Celda *ps1;
-    ps1 = new(Celda);
-    ps1->cargaItem(x);
-    ps1->cargaSig( this -> tope);
-    this -> tope = ps1;
-    this -> cant++;
-    return(ps1->obtenerItem());
+    int i, aux = 0;
+
+    if ( this -> cantidadMax > this -> tope )
+    {
+        if ( posicion - 1 <= this -> tope )
+        {
+            for ( i = this -> tope; i >= posicion ; i--)
+            {
+                this -> items[ i + 1 ] = this -> items[ i ];
+            }
+            this -> items[ posicion ] = elemento;
+            this -> tope ++;
+            aux = elemento;
+        } else
+        {
+            cout << "La posicion no existe en la lista" << endl;
+        }
+    } else
+    {
+        cout << "La lista esta llena" << endl;
+    }
+    return(aux);
 }
-    
-int Lista::suprimir(void)
+
+//Suprimir
+int Lista::suprimir(int posicion)
 {
-    Celda *aux;
-    int x;
-    if( this -> vacia())
+    int i, aux = 0;
+
+    if( posicion - 1 <= this -> tope )
     {
-        cout<<"Lista vacia"<<"\n";
-        return(0);
-    }
-    else
+        aux = this -> items[ posicion ];
+
+        for ( i = posicion; i <= this -> tope; i++)
+            {
+                this -> items[ i ] = this -> items[ i + 1 ];
+            }
+            this -> tope --;
+    }else
     {
-        aux = tope;
-        x = tope->obtenerItem();
-        this -> tope = this -> tope-> obtenerSig();
-        cant--;
-        delete(aux);
-        return(x);
+        cout << "No existe la posicion" << endl;
     }
+    return(aux);
 }
+
 
 void Lista::mostrar(void)
 { 	
-    Celda *aux;
-    if (! this -> vacia())
-    { 	aux = this -> tope;
-        while(aux != NULL)
-        { 	cout << aux->obtenerItem() << endl;
-            aux = aux->obtenerSig();
-        }
+    int i;
+    for ( i = 0; i <= this -> tope ; i++)
+    {
+        cout << this -> items[ i ] << endl;
     }
+    
 }
+
+  
+// INTENTO DE CARGA  
+/*    if( this -> tope < this -> cantidadMax)
+    {
+        if( posicion -1 == this -> tope)
+        {
+            cout << "xd" << endl;
+            this -> items[posicion] = elemento;
+            this -> tope ++;
+        }
+    }    
+    */

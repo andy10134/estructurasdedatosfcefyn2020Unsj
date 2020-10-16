@@ -4,8 +4,8 @@
 
 class Lista{
 private:     //a partir de aquí todos los miembros serán privados
-    int cantidad;
-    int cantidadMaxima;
+    int cantidadMax;
+    int tope;
     int *items;
 
 public:      //a patir de aquí todas las declaraciones serán de acceso público
@@ -20,5 +20,6 @@ public:      //a patir de aquí todas las declaraciones serán de acceso públic
   int siguiente(int posicion);
   int anterior(int posicion);
   void recorrer(void);
+  void mostrar(void);
 };
 #endif
