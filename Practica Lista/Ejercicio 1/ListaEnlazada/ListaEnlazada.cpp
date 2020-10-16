@@ -103,9 +103,10 @@ int ListaEnlazada::suprimir(int posicion)
         }
         else
         {
-            if (posicion -1 == 0)
+            if (posicion == 1)
             {
                 aux = this -> cabeza->obtenerSig();
+
             }
             else
             {
