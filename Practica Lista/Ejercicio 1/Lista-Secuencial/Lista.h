@@ -20,6 +20,5 @@ public:      //a patir de aquí todas las declaraciones serán de acceso públic
   int siguiente(int posicion);
   int anterior(int posicion);
   void recorrer(void);
-  void mostrar(void);
 };
 #endif
