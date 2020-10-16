@@ -138,17 +138,24 @@ int ListaEnlazada::suprimir(int posicion)
 
 int ListaEnlazada::recuperar(int posicion)
 {
-    if (posicion > 0 && posicion <= this -> cant +1)
+    if (posicion > 0 && posicion < this -> cant +1)
     {
-        Celda *aux;
-        int cont=1;
-        aux = this -> cabeza;
-        while (cont != posicion)
-        { 
-            cont++;
-            aux = aux->obtenerSig();
+        if(vacia())
+        {
+            cout<<"no se puede suprimir porque la lista esta vacia"<<endl;
         }
-        return(aux->obtenerItem());
+        else
+        {
+            Celda *aux;
+            int cont=1;
+            aux = this -> cabeza;
+            while (cont != posicion)
+            { 
+                cont++;
+                aux = aux->obtenerSig();
+            }
+            return(aux->obtenerItem());
+        }
     }
     else
     {
@@ -168,22 +175,28 @@ void ListaEnlazada::mostrar(void)
 }
 
 int ListaEnlazada::buscar(int elemento){
-    Celda *aux;
-    int cont=1;
-    aux = this -> cabeza;
-    while (aux!=NULL && aux->obtenerItem() != elemento)
-    { 
-        cont++;
-        aux = aux->obtenerSig();
-    }
-    if(aux == NULL)
+    if (vacia())
     {
-        cout<<"No se encontro el elemento en la lista"<<endl;
+        cout<<"no se puede suprimir porque la lista esta vacia"<<endl;
     }
     else
     {
-        cout<<"Se encontro el elemento en la posicion "<<cont<<" de la lista"<<endl;
-        return(cont);
+        Celda *aux;
+        int cont=1;
+        aux = this -> cabeza;
+        while (aux!=NULL && aux->obtenerItem() != elemento)
+        { 
+            cont++;
+            aux = aux->obtenerSig();
+        }
+        if(aux == NULL)
+        {
+            cout<<"No se encontro el elemento en la lista"<<endl;
+        }
+        else
+        {
+            cout<<"Se encontro el elemento en la posicion "<<cont<<" de la lista"<<endl;
+            return(cont);
+        }
     }
-    
 }
