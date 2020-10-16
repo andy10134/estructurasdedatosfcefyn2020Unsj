@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 int Celda::obtenerItem(void)
 {
     return( this -> item );

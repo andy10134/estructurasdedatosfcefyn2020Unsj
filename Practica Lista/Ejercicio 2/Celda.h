@@ -5,12 +5,12 @@
 class Celda{
 private:     //a partir de aquí todos los miembros serán privados
     int item;
-    Celda *sig;
+    int sig;
 
 public:      //a patir de aquí todas las declaraciones serán de acceso público
     int obtenerItem(void);
     void cargaItem(int xitem);
-    void cargaSig(Celda* xtope);
-    Celda* obtenerSig(void);
+    void cargaSig(int xtope);
+    int obtenerSig(void);
 };
 #endif
