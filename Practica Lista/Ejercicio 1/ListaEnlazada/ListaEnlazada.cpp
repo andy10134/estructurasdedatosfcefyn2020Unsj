@@ -29,7 +29,7 @@ int ListaEnlazada::insertar(int elemento, int posicion){
         }
         else
         {
-            if (posicion -1 == 0)
+            if (posicion == 1)
             {
                 nuevo->cargaSig(this -> cabeza);
                 this -> cabeza = nuevo;
