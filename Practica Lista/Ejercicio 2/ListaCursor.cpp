@@ -20,51 +20,53 @@ int ListaCursor::vacia(void)
 
 int ListaCursor::insertar(int elemento, int posicion)
 {
-
-    if( this -> vacia() )
+    if (posicion > 0 && posicion <= this -> cant +1 && this -> cant +1 <= this -> maximaCant)
     {
-        this -> items[0].cargaItem(elemento);
-        this -> items[0].cargaSig(-1); 
-        this -> cant++;
-
-    }else if( posicion ==1 )
-    {
-        int i = 0;
-        while ( i < this -> maximaCant && this -> items[i].obtenerSig() != -2 )
+        if( this -> vacia() )
         {
-            i++;
-        }
-        this -> items[i].cargaSig( this -> cabeza );
-        this -> items[i].cargaItem(elemento);
-        this -> cabeza = i;
-        this -> cant++;        
-    }
-    else if (posicion > 0 && posicion <= this -> cant +1 && this -> cant +1 <= this -> maximaCant)
-    {
+            this -> items[0].cargaItem(elemento);
+            this -> items[0].cargaSig(-1); 
 
-        int cont=1;
-        int i, aux, anterior;
+
+        }else if( posicion ==1 )
+        {
+            int i = 0;
+            while ( i < this -> maximaCant && this -> items[i].obtenerSig() != -2 )
+            {
+                i++;
+            }
+            this -> items[i].cargaSig( this -> cabeza );
+            this -> items[i].cargaItem(elemento);
+            this -> cabeza = i;
         
-        aux = this -> cabeza;
-        while( cont < posicion )
-        {
-            anterior = aux;
-            aux = this -> items[ aux ].obtenerSig();
-            cont++;
         }
-
-        i = 0;
-        while ( i < this -> maximaCant && this -> items[i].obtenerSig() != -2 )
+        else
         {
-            i++;
-        }
 
-        this -> items[i].cargaSig(aux);
-        this -> items[i].cargaItem(elemento);
-        this -> items[ anterior ].cargaSig(i);
-        this -> cant++;        
-    }
-    else
+            int cont=1;
+            int i, aux, anterior;
+            
+            aux = this -> cabeza;
+            while( cont < posicion )
+            {
+                anterior = aux;
+                aux = this -> items[ aux ].obtenerSig();
+                cont++;
+            }
+
+            i = 0;
+            while ( i < this -> maximaCant && this -> items[i].obtenerSig() != -2 )
+            {
+                i++;
+            }
+
+            this -> items[i].cargaSig(aux);
+            this -> items[i].cargaItem(elemento);
+            this -> items[ anterior ].cargaSig(i);
+        
+        }
+            this -> cant++;
+    }else
     {
         cout<<"POSICION INVALIDA"<<endl;
     }
