@@ -87,29 +87,96 @@ void ListaCursor::mostrar(void)
     }
     
 }
-/*
-Celda* ListaEnlazada::primerElemento(void)
-{
-    return(this -> cabeza);
-}
 
-void ListaEnlazada::mostrar(void)
+int ListaCursor::primerElemento(void)
 {
-    Celda *aux;
-    aux = this -> cabeza;
-    while (aux!=NULL)
-    { 
-        cout<<aux->obtenerItem()<<endl;
-        aux = aux->obtenerSig();
-    }
+	if(vacia())
+	{
+		return(this-> items[cabeza].obtenerItem())
+	}
+	else
+	{
+		cout<<"lista vacia"<<endl;
+		return(0);
+	}
 }
 
 
-int ListaEnlazada::buscar(int elemento){
-    Celda *aux;
-    aux = this -> cabeza;
-    while (aux!=NULL && aux->obtenerItem() != elemento)
-    { 
-        aux = aux->obtenerSig();
-    }
-}*/
+int ListaCursor::ultimoElemento(void)
+{
+	if(vacia())
+	{
+		int aux, anterior;
+		aux = this -> cabeza;
+		while(aux != -1)
+		{
+			anterior = aux;
+			aux = this -> items[aux].obtenerSig();
+		}
+		return(this -> items[anterior].obtenerItem());
+	}
+	else
+	{
+		cout<<"Lista Vacia"<<endl;
+		return(0);
+	}
+}
+
+
+int ListaCursor::recuperar(int posicion)
+{
+	if(vacia())
+	{
+		if(posicion < 0 && posicion <= this -> cant+1)
+		{
+			int cont = 1;
+			int aux;
+			aux = this -> cabeza;
+			while(cont != posicion)
+			{
+				aux = this -> items[aux].obtenerSig();
+				cont ++;
+			}
+			return(this -> items[aux].obtenerItem())
+		}
+		else
+		{
+			cout<<"posicion invalida"<<endl;
+		}
+	}
+	else
+	{
+		cout<<"Lista Vacia"<<endl;
+	}
+	return(0);
+}
+
+
+int ListaCursor::buscar(int elemento)
+{
+	if(vacia())
+	{
+		int cont = 1;
+		int aux, anterior;
+		aux = this -> cabeza;
+		while(this -> items[aux].obtenerItem() != elemento && this -> aux != -1)
+		{
+			aux = this -> items[aux].obtenerSig();
+			cont ++;
+		}
+		if(aux != 1)
+		{
+			return(cont);
+		}
+		else
+		{
+			cout<<"no se encontro el elemento"<<endl;
+			return(-1);
+		}
+	}
+	else
+	{
+		cout<<"Lista Vacia"<<endl;
+	}
+	return(0);
+}
