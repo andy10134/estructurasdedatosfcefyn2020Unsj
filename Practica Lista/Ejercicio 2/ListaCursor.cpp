@@ -7,7 +7,7 @@ using namespace std;
 //Constructor
 ListaCursor::ListaCursor(int cant)
 {
-    this -> items[cant];
+    this -> items[cant]; //aca deberia ser cabeza(guarda el primer elemento), cantidad de elementos y el arreglo con las celdas
     this -> cabeza = 0;
     this -> cant = 0;
     this -> maximaCant = cant;

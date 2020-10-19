@@ -14,4 +14,5 @@ main(){
     elemento = lista.suprimir(3);
     cout<<elemento<<endl;
     lista.mostrar();
+    cout<<"elemento recuperado de la posicion 1: "<<lista.recuperar(1)<<endl;
 }
