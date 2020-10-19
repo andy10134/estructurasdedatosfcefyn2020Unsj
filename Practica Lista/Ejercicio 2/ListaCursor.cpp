@@ -7,7 +7,7 @@ using namespace std;
 //Constructor
 ListaCursor::ListaCursor(int cant)
 {
-    this -> items[cant]; //aca deberia ser cabeza(guarda el primer elemento), cantidad de elementos y el arreglo con las celdas
+    this -> items = new Celda[cant]; //aca deberia ser cabeza(guarda el primer elemento), cantidad de elementos y el arreglo con las celdas
     this -> cabeza = 0;
     this -> cant = 0;
     this -> maximaCant = cant;
@@ -20,25 +20,40 @@ int ListaCursor::vacia(void)
 
 int ListaCursor::insertar(int elemento, int posicion)
 {
-    if( this -> vacia() && posicion ==1 )
+
+    if( this -> vacia() )
     {
-        this -> items[posicion -1].cargaItem(elemento);
-        this -> items[posicion -1].cargaSig(-1); 
+        this -> items[0].cargaItem(elemento);
+        this -> items[0].cargaSig(-1); 
         this -> cant++;
-        
-    }else if (posicion > 0 && posicion <= this -> cant +1 && this -> cant +1 <= this -> maximaCant)
+
+    }else if( posicion ==1 )
     {
+        int i = 0;
+        while ( i < this -> maximaCant && this -> items[i].obtenerSig() != -2 )
+        {
+            i++;
+        }
+        this -> items[i].cargaSig( this -> cabeza );
+        this -> items[i].cargaItem(elemento);
+        this -> cabeza = i;
+        this -> cant++;        
+    }
+    else if (posicion > 0 && posicion <= this -> cant +1 && this -> cant +1 <= this -> maximaCant)
+    {
+
         int cont=1;
         int i, aux, anterior;
         
         aux = this -> cabeza;
-        while( cont < posicion -1 )
+        while( cont < posicion )
         {
             anterior = aux;
             aux = this -> items[ aux ].obtenerSig();
             cont++;
         }
 
+        i = 0;
         while ( i < this -> maximaCant && this -> items[i].obtenerSig() != -2 )
         {
             i++;
@@ -57,6 +72,19 @@ int ListaCursor::insertar(int elemento, int posicion)
 }
 
 
+void ListaCursor::mostrar(void)
+{
+    int aux, cant = 0;
+    aux = this -> cabeza;
+
+    while ( aux != -1 )
+    {
+        cout << this -> items[ aux ].obtenerItem() << " - Posicion: " << cant+1 << endl;
+        aux = this -> items[ aux ].obtenerSig();
+        cant++;
+    }
+    
+}
 /*
 Celda* ListaEnlazada::primerElemento(void)
 {
