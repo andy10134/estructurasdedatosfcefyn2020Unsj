@@ -20,34 +20,34 @@ int ListaCursor::vacia(void)
 
 int ListaCursor::insertar(int elemento, int posicion)
 {
-    if (posicion > 0 && posicion <= this -> cant +1 && this -> cant +1 <= this -> maximaCant)
+    if( this -> vacia() && posicion ==1 )
     {
-        Celda* nuevo;
-        Celda aux;
-        nuevo = new(Celda);
+        this -> items[posicion -1].cargaItem(elemento);
+        this -> items[posicion -1].cargaSig(-1); 
+        this -> cant++;
+        
+    }else if (posicion > 0 && posicion <= this -> cant +1 && this -> cant +1 <= this -> maximaCant)
+    {
         int cont=1;
-        int i;
-        nuevo->cargaItem(elemento);
-        nuevo->cargaSig(NULL);
+        int i, aux, anterior;
         
-        aux = this -> items[ this -> cabeza ];
-        while( aux.obtenerSig() != -1 && cont <= posicion )
+        aux = this -> cabeza;
+        while( cont < posicion -1 )
         {
-            aux = this -> items[ aux.obtenerSig() ];
-            cont ++;
+            anterior = aux;
+            aux = this -> items[ aux ].obtenerSig();
+            cont++;
         }
-        i = aux.obtenerSig();
-        nuevo -> cargaSig(i);
-        
-        i = 0;
-        
+
         while ( i < this -> maximaCant && this -> items[i].obtenerSig() != -2 )
         {
             i++;
         }
 
-        this -> items[i] = nuevo;
-        
+        this -> items[i].cargaSig(aux);
+        this -> items[i].cargaItem(elemento);
+        this -> items[ anterior ].cargaSig(i);
+        this -> cant++;        
     }
     else
     {
