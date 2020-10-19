@@ -8,6 +8,7 @@ private:     //a partir de aquí todos los miembros serán privados
     int sig;
 
 public:      //a patir de aquí todas las declaraciones serán de acceso público
+    Celda(int, int);
     int obtenerItem(void);
     void cargaItem(int xitem);
     void cargaSig(int xtope);
