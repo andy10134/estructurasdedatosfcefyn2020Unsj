@@ -17,8 +17,8 @@ public:      //a patir de aquí todas las declaraciones serán de acceso públic
     int suprimir(int posicion);
     int recuperar(int posicion);
     int buscar(int elemento); //
-    Celda* primerElemento(void); //
-    Celda* ultimoElemento(void);
+    int primerElemento(void); //
+    int ultimoElemento(void);
     int siguiente(int posicion);
     int anterior(int posicion);
     void mostrar(void); //
