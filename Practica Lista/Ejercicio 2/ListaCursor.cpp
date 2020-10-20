@@ -94,7 +94,7 @@ int ListaCursor::suprimir(int posicion)
         {
             int aux, anterior;
             
-            while( posicion < cont )
+            while( posicion > cont )
             {
                 aux = anterior;
                 aux = this -> items[aux].obtenerSig();
