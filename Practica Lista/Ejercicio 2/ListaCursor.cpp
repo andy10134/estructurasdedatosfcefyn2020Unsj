@@ -79,11 +79,15 @@ int ListaCursor::insertar(int elemento, int posicion)
 int ListaCursor::suprimir(int posicion)
 {
     int cont = 1, aux;
-    if (posicion > 0 && posicion <= this -> cant )
+
+    if( this -> vacia())
+    {
+        cout << "Arreglo vacio Imposible borrar datos" << endl;
+    }else if (posicion > 0 && posicion <= this -> cant )
     {
         if (posicion == 1)
         {
-            aux = this -> items[ this -> cabeza ].obtenerItem();
+            aux = this -> items[ this -> cabeza ].obtenerSig();
             this -> items[ this -> cabeza ].cargaSig(-2);
             this -> cabeza = aux;
         }else
@@ -99,10 +103,13 @@ int ListaCursor::suprimir(int posicion)
 
             this -> items[ anterior ].cargaSig( this -> items[ aux ].obtenerSig() );
             this -> items[ aux ].cargaSig(-2);
-        }
-        
+        }   
+    }else
+    {
+        cout << "Posicion no valida" << endl;
     }
     
+    return(0);
 }
 
 void ListaCursor::mostrar(void)
