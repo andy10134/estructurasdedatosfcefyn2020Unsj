@@ -78,13 +78,27 @@ int ListaCursor::insertar(int elemento, int posicion)
 
 int ListaCursor::suprimir(int posicion)
 {
-    int cont = 1;
+    int cont = 1, aux;
     if (posicion > 0 && posicion <= this -> cant )
     {
         if (posicion == 1)
         {
-            items[0].cargaSig(-2); 
-            this -> cabeza = this -> items[0].obtenerSig();
+            aux = this -> items[ this -> cabeza ].obtenerItem();
+            this -> items[ this -> cabeza ].cargaSig(-2);
+            this -> cabeza = aux;
+        }else
+        {
+            int aux, anterior;
+            
+            while( posicion < cont )
+            {
+                aux = anterior;
+                aux = this -> items[aux].obtenerSig();
+                cont++;
+            }
+
+            this -> items[ anterior ].cargaSig( this -> items[ aux ].obtenerSig() );
+            this -> items[ aux ].cargaSig(-2);
         }
         
     }
