@@ -65,14 +65,31 @@ int ListaCursor::insertar(int elemento, int posicion)
             this -> items[ anterior ].cargaSig(i);
         
         }
-            this -> cant++;
+        
+        this -> cant++;
+        return(elemento);
+
     }else
     {
         cout<<"POSICION INVALIDA"<<endl;
+        return(0);
     }
-    return(0);
 }
 
+int ListaCursor::suprimir(int posicion)
+{
+    int cont = 1;
+    if (posicion > 0 && posicion <= this -> cant )
+    {
+        if (posicion == 1)
+        {
+            items[0].cargaSig(-2); 
+            this -> cabeza = this -> items[0].obtenerSig();
+        }
+        
+    }
+    
+}
 
 void ListaCursor::mostrar(void)
 {
@@ -87,6 +104,8 @@ void ListaCursor::mostrar(void)
     }
     
 }
+
+
 /*
 Celda* ListaEnlazada::primerElemento(void)
 {
