@@ -90,9 +90,9 @@ void ListaCursor::mostrar(void)
 
 int ListaCursor::primerElemento(void)
 {
-	if(vacia())
+	if(!vacia())
 	{
-		return(this-> items[cabeza].obtenerItem())
+		return(this-> items[cabeza].obtenerItem());
 	}
 	else
 	{
@@ -104,7 +104,7 @@ int ListaCursor::primerElemento(void)
 
 int ListaCursor::ultimoElemento(void)
 {
-	if(vacia())
+	if(!vacia())
 	{
 		int aux, anterior;
 		aux = this -> cabeza;
@@ -125,9 +125,9 @@ int ListaCursor::ultimoElemento(void)
 
 int ListaCursor::recuperar(int posicion)
 {
-	if(vacia())
+	if(!vacia())
 	{
-		if(posicion < 0 && posicion <= this -> cant+1)
+		if(posicion > 0 && posicion <= this -> cant+1)
 		{
 			int cont = 1;
 			int aux;
@@ -137,7 +137,7 @@ int ListaCursor::recuperar(int posicion)
 				aux = this -> items[aux].obtenerSig();
 				cont ++;
 			}
-			return(this -> items[aux].obtenerItem())
+			return(this -> items[aux].obtenerItem());
 		}
 		else
 		{
@@ -154,12 +154,12 @@ int ListaCursor::recuperar(int posicion)
 
 int ListaCursor::buscar(int elemento)
 {
-	if(vacia())
+	if(!vacia())
 	{
 		int cont = 1;
 		int aux, anterior;
 		aux = this -> cabeza;
-		while(this -> items[aux].obtenerItem() != elemento && this -> aux != -1)
+		while(this -> items[aux].obtenerItem() != elemento && aux != -1)
 		{
 			aux = this -> items[aux].obtenerSig();
 			cont ++;
@@ -179,4 +179,63 @@ int ListaCursor::buscar(int elemento)
 		cout<<"Lista Vacia"<<endl;
 	}
 	return(0);
+}
+
+
+int ListaCursor::siguiente(int posicion)
+{
+	if(!vacia())
+	{
+		if(posicion > 0 && posicion <= this -> cant+1)
+		{
+			int cont = 1;
+			int aux, anterior;
+			aux = this -> cabeza;
+			while(cont != posicion)
+			{
+				anterior = aux;
+				aux = this -> items[aux].obtenerSig();
+				cont ++;
+			}
+			return(this -> items[aux].obtenerSig());
+		}
+		else
+		{
+			cout<<"posicion invalida"<<endl;
+		}
+	}
+	else
+	{
+		cout<<"Lista Vacia";
+	}
+	return(-1);
+}
+
+int ListaCursor::anterior(int posicion)
+{
+	if(!vacia())
+	{
+		if(posicion > 1 && posicion <= this -> cant+1)
+		{
+			int cont = 1;
+			int aux, anterior;
+			aux = this -> cabeza;
+			while(cont != posicion)
+			{
+				anterior = aux;
+				aux = this -> items[aux].obtenerSig();
+				cont ++;
+			}
+			return(anterior);
+		}
+		else
+		{
+			cout<<"posicion invalida"<<endl;
+		}
+	}
+	else
+	{
+		cout<<"Lista Vacia";
+	}
+	return(-1);
 }
