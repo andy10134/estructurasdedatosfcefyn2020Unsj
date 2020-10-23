@@ -1,6 +1,6 @@
 #include "ListaEnlazada.h"
 #include "Celda.cpp"
-#include "designacion.h"
+#include "designacion.cpp"
 #include <iostream>
 
 using namespace std;
@@ -26,7 +26,6 @@ int ListaEnlazada::insertar(Designacion elemento, int posicion = 1){
         if(vacia())
         {
             this -> cabeza = nuevo;
-            cout<<"SE INSERTO EL ELEMENTO EN LA PRIMERA POSICION PORQUE ESTA VACIA CAPO"<<endl;
         }
         else
         {
@@ -34,7 +33,6 @@ int ListaEnlazada::insertar(Designacion elemento, int posicion = 1){
             {
                 nuevo->cargaSig(this -> cabeza);
                 this -> cabeza = nuevo;
-                cout<<"SE INSERTO EL ELEMENTO EN LA PRIMERA POSICION"<<endl;
             }
             else
             {
@@ -48,7 +46,6 @@ int ListaEnlazada::insertar(Designacion elemento, int posicion = 1){
                 }
                 anterior->cargaSig(nuevo);
                 nuevo->cargaSig(aux);
-                cout<<"El elemento ha sido insertado en el lugar que corresponde"<<endl;
             }            
         }
         this -> cant ++;
@@ -58,6 +55,48 @@ int ListaEnlazada::insertar(Designacion elemento, int posicion = 1){
         cout<<"POSICION INVALIDA"<<endl;
     }
     return(0);
+}
+
+void ListaEnlazada::mostrar(void)
+{
+    Celda *aux;
+    aux = this -> cabeza;
+    while (aux!=NULL)
+    { 
+        cout << aux->obtenerItem().getAnio() << endl;
+        aux = aux->obtenerSig();
+    }
+}
+
+
+Designacion ListaEnlazada::recuperar(int posicion)
+{
+    if (posicion > 0 && posicion < this -> cant +1)
+    {
+        if(vacia())
+        {
+            cout<<"no se puede suprimir porque la lista esta vacia"<<endl;
+        }
+        else
+        {
+            Celda *aux;
+            int cont=1;
+            aux = this -> cabeza;
+            while (cont != posicion)
+            { 
+                cont++;
+                aux = aux->obtenerSig();
+            }
+            return(aux->obtenerItem());
+        }
+    }
+    else
+    {
+        cout<<"POSICION INVALIDA"<<endl;
+        Designacion aux();
+        return(aux);
+    } 
+    
 }
 
 /*Designacion ListaEnlazada::primerElemento(void)
@@ -134,45 +173,6 @@ int ListaEnlazada::suprimir(int posicion)
     {
         cout<<"POSICION INVALIDA"<<endl;
         return(0);
-    }
-}
-
-int ListaEnlazada::recuperar(int posicion)
-{
-    if (posicion > 0 && posicion < this -> cant +1)
-    {
-        if(vacia())
-        {
-            cout<<"no se puede suprimir porque la lista esta vacia"<<endl;
-        }
-        else
-        {
-            Celda *aux;
-            int cont=1;
-            aux = this -> cabeza;
-            while (cont != posicion)
-            { 
-                cont++;
-                aux = aux->obtenerSig();
-            }
-            return(aux->obtenerItem());
-        }
-    }
-    else
-    {
-        cout<<"POSICION INVALIDA"<<endl;
-    }
-}
-
-
-void ListaEnlazada::mostrar(void)
-{
-    Celda *aux;
-    aux = this -> cabeza;
-    while (aux!=NULL)
-    { 
-        cout<<aux->obtenerItem()<<endl;
-        aux = aux->obtenerSig();
     }
 }
 

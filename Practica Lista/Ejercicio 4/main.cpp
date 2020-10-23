@@ -5,6 +5,8 @@
 #include "ListaEnlazada.cpp"
 using namespace std;
 
+void contarMujeres(ListaEnlazada lista);
+
 
 main()
 {
@@ -32,4 +34,24 @@ main()
         Designacion desig = Designacion(anio, cargo, instancia, materia, varones, mujeres);
         lista.insertar(desig);
     }
+
+    lista.mostrar();
+}
+
+/*Leer un tipo de cargo por teclado, y mostrar la cantidad de mujeres designadas en ese cargo por año. */
+void contarMujeres(ListaEnlazada lista)
+{
+    string cargo;
+    Designacion aux;
+    cout << "Ingrese el tipo de cargo" << endl;
+    cin >> cargo;
+    int i = 0;
+    aux = lista.recuperar(i);
+    while (aux.getAnio())
+    {   
+        if(aux.getCargo())
+        i++;
+        aux = lista.recuperar(i);
+    }
+    
 }

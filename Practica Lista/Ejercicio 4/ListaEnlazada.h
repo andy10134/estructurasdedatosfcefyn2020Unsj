@@ -14,7 +14,7 @@ public:      //a patir de aquí todas las declaraciones serán de acceso públic
   int vacia(void); //
   int insertar(Designacion elemento, int posicion); //
   int suprimir(int posicion);
-  int recuperar(int posicion);
+  Designacion recuperar(int posicion);
   int buscar(int elemento); //
   int primerElemento(void); // primer y ultimo devuelven el item que esta dentro de la celda
   int ultimoElemento(void);

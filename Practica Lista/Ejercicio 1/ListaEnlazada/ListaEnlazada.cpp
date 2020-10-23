@@ -142,7 +142,7 @@ int ListaEnlazada::recuperar(int posicion)
     {
         if(vacia())
         {
-            cout<<"no se puede suprimir porque la lista esta vacia"<<endl;
+            cout<<"no se puede recuperar porque la lista esta vacia"<<endl;
         }
         else
         {
