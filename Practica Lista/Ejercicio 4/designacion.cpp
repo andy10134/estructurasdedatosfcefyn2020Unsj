@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Designacion::Designacion(int anio, string cargo, string instancia, string materia, int varones, int mujeres)
+Designacion::Designacion(int anio=0, string cargo="", string instancia="", string materia="", int varones=0, int mujeres=0)
 {
     this -> anio = anio;
     this -> cargo = cargo;

@@ -1,4 +1,5 @@
 #include "Celda.h"
+#include "designacion.h"
 #include <iostream>
 
 using namespace std;
