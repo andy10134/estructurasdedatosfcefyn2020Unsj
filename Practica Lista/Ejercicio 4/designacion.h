@@ -1,6 +1,5 @@
 #ifndef designacion_h 
 #define designacion_h
-#include "designacion.h"
 #include <stdlib.h>
 #include <iostream>
 

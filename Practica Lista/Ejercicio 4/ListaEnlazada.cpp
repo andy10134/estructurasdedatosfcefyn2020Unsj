@@ -1,6 +1,6 @@
 #include "ListaEnlazada.h"
 #include "Celda.cpp"
-#include "designacion.cpp"
+#include "designacion.h"
 #include <iostream>
 
 using namespace std;
@@ -92,8 +92,7 @@ Designacion ListaEnlazada::recuperar(int posicion)
     }
     else
     {
-        cout<<"POSICION INVALIDA"<<endl;
-        Designacion aux();
+        Designacion aux;
         return(aux);
     } 
     
