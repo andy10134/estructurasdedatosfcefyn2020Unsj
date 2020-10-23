@@ -11,9 +11,9 @@ main()
 {
     ifstream archivo; 
     string linea, cargo, instancia, materia;
-    char* linea2;
+    char* linea2, *dato;
     string arreglo[5];
-    std::string dato;
+    //std::string dato;
     int anio, varones, mujeres, i;
     ListaEnlazada lista = ListaEnlazada(0);
     archivo.open("estadistica-designacion-magistrados-federal-nacional-por-genero-20190913.csv", ios::in);
