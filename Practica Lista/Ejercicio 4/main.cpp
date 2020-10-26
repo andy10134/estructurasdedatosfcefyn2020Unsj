@@ -7,6 +7,7 @@
 using namespace std;
 
 void contarMujeres(ListaEnlazada lista);
+void agentesDesignados(ListaEnlazada lista);
 
 
 main()
@@ -46,6 +47,41 @@ main()
     }
 
    contarMujeres(lista);
+}
+
+/*Leer una materia, un cargo y un año y mostrar la cantidad de agentes designados en ese cargo,  esa materia en ese año.*/
+void agentesDesignados(ListaEnlazada lista)
+{
+    int anio = 0, i = 1, cantitadTotal = 0, anioComp = 0;
+    string cargo, materia;
+    Designacion aux;
+    cout << "Ingrese el tipo de cargo" << endl;
+    cin >> cargo;
+    cout << "Ingrese el tipo de materia" << endl;
+    cin >> materia;
+    cout << "Ingrese el anio" << endl;
+    cin >> anio;
+    
+    aux = lista.recuperar(i);
+    anioComp = aux.getAnio();
+
+    while (aux.getAnio() >= anio )
+    {   
+        if(anio == aux.getAnio())
+        {
+            if(aux.getCargo() == cargo)
+            {
+                if(aux.getMateria() == materia)
+                {
+                    cantitadTotal += aux.getCantMujeres() + aux.getCantVarones();
+                }
+            }
+        }
+        i++;
+        aux = lista.recuperar(i);
+    }
+    
+    cout << "El total es " << cantitadTotal << endl;
 }
 
 /*Leer un tipo de cargo por teclado, y mostrar la cantidad de mujeres designadas en ese cargo por año. */
