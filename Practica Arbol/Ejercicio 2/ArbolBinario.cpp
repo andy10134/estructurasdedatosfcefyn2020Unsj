@@ -16,8 +16,8 @@ public:
     int *camino(int inicio, int destino);
     int altura(int elemento);
     void InOrden(Nodo *raiz);
-    int PreOrden();
-    int PostOrden();
+    void PreOrden(Nodo *raiz);
+    void PostOrden(Nodo *raiz);
     Nodo *getRaiz();
 };
 
@@ -52,36 +52,57 @@ int ArbolBinarioB::insertar(int elemento, Nodo * raizS )
     }
 }
 
-int ArbolBinarioB::suprimir(int elemento, Nodo *raiz)
+int ArbolBinarioB::suprimir(int elemento, Nodo *raiz)  //no esta terminado xd
 {
-    if(Raiz != NULL)
+    if(raiz != NULL)
     {
 	Nodo *aux;
-	if(Raiz->obtenerItem() == elemento)
-	{
-		
-	}
-	else
-	{
-		if(Raiz->obtenerItem() > elemento)
-		{
-			suprimir(elemento, raiz->obtenerDer());
-		}
-		else
-		{
-		}
-	}
-    }else
+        if(raiz->obtenerItem() == elemento)
+        {
+            
+        }
+        else
+        {
+            if(raiz->obtenerItem() > elemento)
+            {
+                suprimir(elemento, raiz->obtenerDerecha());
+            }
+            else
+            {
+                suprimir(elemento, raiz->obtenerIzquierda());
+            }
+	    }
+    }
+    else
     {
-        cout<<"Arbol vacio, no se puede suprimir"<<endl;
+        cout<<"no se puede suprimir"<<endl;
 	    return(0);
     } 
 }
+
 void ArbolBinarioB::InOrden(Nodo *raiz){
 	if(raiz != NULL)
 	{
 		InOrden(raiz->obtenerIzquierda());
 		cout<<raiz->obtenerItem()<<endl;
 		InOrden(raiz->obtenerDerecha());
+	}
+}
+
+void ArbolBinarioB::PreOrden(Nodo *raiz){
+	if(raiz != NULL)
+	{
+		cout<<raiz->obtenerItem()<<endl;
+        InOrden(raiz->obtenerIzquierda());
+		InOrden(raiz->obtenerDerecha());
+	}
+}
+
+void ArbolBinarioB::PostOrden(Nodo *raiz){
+	if(raiz != NULL)
+	{
+		InOrden(raiz->obtenerIzquierda());
+		InOrden(raiz->obtenerDerecha());
+        cout<<raiz->obtenerItem()<<endl;
 	}
 }
