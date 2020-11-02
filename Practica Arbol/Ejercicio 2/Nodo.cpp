@@ -3,6 +3,14 @@
 
 using namespace std;
 
+
+Nodo::Nodo(int xitem= 0, Nodo *izquierda= NULL, Nodo *derecha= NULL)
+{
+    item = xitem;
+    izq = izquierda;
+    der = derecha;
+}
+
 int Nodo::obtenerItem(void)
 {
     return(item);
