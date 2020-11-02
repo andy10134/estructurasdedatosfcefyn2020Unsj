@@ -1,10 +1,12 @@
-class ArbolBinario
+#include "Nodo.cpp"
+
+class ArbolBinarioB
 {
 private:
-    Nodo *Raiz;
+    Nodo *raiz;
 public:
-    ArbolBinario(/* args */);
-    int insertar(int elemento);
+    ArbolBinarioB(/* args */);
+    int insertar(int element, Nodo *aux);
     int suprimir(int elemento);
     Nodo *buscar(int elemento);
     int nivel();
@@ -16,10 +18,36 @@ public:
     int InOrden();
     int PreOrden();
     int PostOrden();
+    Nodo *getRaiz();
 };
 
-ArbolBinario::ArbolBinario(/* args */)
+ArbolBinarioB::ArbolBinarioB(/* args */)
 {
-    Nodo = NULL;
+    raiz = NULL;
 }
 
+Nodo *ArbolBinarioB::getRaiz()
+{
+    return(raiz);
+}
+
+int ArbolBinarioB::insertar(int elemento, Nodo * raizS )
+{
+    if (raizS == NULL)
+    {
+        raizS = new (Nodo);
+        raizS -> cargarIzquierda(NULL);
+        raizS -> cargarDerecha(NULL);
+        raizS -> cargaItem(elemento);
+
+    }else
+    {
+        if (elemento > raizS -> obtenerItem())
+        {
+            insertar(elemento, raizS -> obtenerDerecha());
+        }else
+        {
+            insertar(elemento, raizS -> obtenerIzquierda());
+        }
+    }
+}
