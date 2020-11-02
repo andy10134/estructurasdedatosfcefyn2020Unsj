@@ -17,22 +17,25 @@ int main(int argc, char const *argv[])
 
 void hoffman(ListaEnlazada lista)
 {
+
     if(!lista.vacia())
-    {
+    {   
         Celda *aux = lista.recuperar(1);
         Celda *aux1 = lista.recuperar(2);
 
-        if(aux1 != NULL)
-        {          
+        while(aux1 != NULL)
+        {
             lista.insertar(aux -> obtenerEtiqueta() + aux1 -> obtenerEtiqueta() ,
-                           aux -> obtenerItem() + aux1 -> obtenerItem(),
-                           aux,
-                           aux1);
-
+                        aux -> obtenerItem() + aux1 -> obtenerItem(),
+                        aux,
+                        aux1);
+            lista.suprimir(1);
+            lista.suprimir(1);
+            aux = lista.recuperar(1);
+            aux1 = lista.recuperar(2);
         }
     }else
     {
         cout << "Lista Vacia" << endl;
     }
-     
 }

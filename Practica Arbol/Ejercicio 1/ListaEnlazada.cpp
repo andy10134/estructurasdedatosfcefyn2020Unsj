@@ -14,7 +14,7 @@ int ListaEnlazada::vacia(void)
     return( this -> cant == 0);
 }
 
-int ListaEnlazada::insertar(string elemento, int frecuencia,Celda *derecha, Celda *izquierda)
+int ListaEnlazada::insertar(string elemento, int frecuencia,Celda *derecha = NULL, Celda *izquierda = NULL)
 {
     Celda *aux;
     aux = new (Celda);
@@ -196,10 +196,10 @@ Celda* ListaEnlazada::recuperar(int posicion)
             }
             return(aux);
         }
-    }
-    else
+    }else
     {
         cout<<"POSICION INVALIDA"<<endl;
+        return(NULL);
     }
 }
 
