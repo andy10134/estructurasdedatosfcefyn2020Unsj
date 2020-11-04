@@ -6,7 +6,7 @@ private:
     Nodo *raiz;
 public:
     ArbolBinarioB(/* args */);
-    int insertar(int element, Nodo *aux);
+    int insertar(int element, Nodo* aux, bool bandera);
     int suprimir(int elemento, Nodo *raiz);
     Nodo *buscar(int elemento);
     int nivel();
@@ -18,7 +18,7 @@ public:
     void InOrden(Nodo *raiz);
     void PreOrden(Nodo *raiz);
     void PostOrden(Nodo *raiz);
-    Nodo *getRaiz();
+    Nodo *&getRaiz();
 };
 
 ArbolBinarioB::ArbolBinarioB(/* args */)
@@ -26,20 +26,34 @@ ArbolBinarioB::ArbolBinarioB(/* args */)
     raiz = NULL;
 }
 
-Nodo *ArbolBinarioB::getRaiz()
+Nodo *&ArbolBinarioB::getRaiz()
 {
     return(raiz);
 }
 
-int ArbolBinarioB::insertar(int elemento, Nodo * raizS )
+int ArbolBinarioB::insertar(int elemento, Nodo*raizS, bool bandera)
 {
+    /*cout<<raizS<<endl;
+    cout<<&raiz<<endl;
+    cout<<getRaiz()<<endl;*/
     if (raizS == NULL)
     {
-        raizS = new (Nodo);
-        raizS -> cargarIzquierda(NULL);
-        raizS -> cargarDerecha(NULL);
-        raizS -> cargaItem(elemento);
-
+        
+        Nodo * aux;
+        aux = new (Nodo);
+        aux -> cargarIzquierda(NULL);
+        aux -> cargarDerecha(NULL);
+        aux -> cargaItem(elemento);
+        raizS = aux; 
+        /*if(getRaiz() == NULL)
+        {
+            raiz = raizS;
+            cout<<"se inserto en la cabeza"<<endl;
+        }
+        else
+        {
+            cout<<"se inserto"<<endl;
+        }*/
     }else
     {
         if (elemento > raizS -> obtenerItem())
@@ -81,6 +95,7 @@ int ArbolBinarioB::suprimir(int elemento, Nodo *raiz)  //no esta terminado xd
 }
 
 void ArbolBinarioB::InOrden(Nodo *raiz){
+    cout<<"busca"<<endl;
 	if(raiz != NULL)
 	{
 		InOrden(raiz->obtenerIzquierda());
