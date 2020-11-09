@@ -8,7 +8,7 @@ public:
     ArbolBinarioB();
     void insertar(int element, Nodo **raizS);
     int suprimir(int elemento, Nodo **raizS);
-    Nodo *buscar(int elemento);
+    Nodo *buscar(int elemento, Nodo **raizS);
     int nivel();
     bool hoja(int elemento, int elemento2);
     bool hijo(int elemento, int elemento2);
@@ -56,6 +56,37 @@ void ArbolBinarioB::insertar(int elemento, Nodo **raizS)
         }
     }
 }
+
+/*
+Nodo* ArbolBinarioB::buscar(int elemento, Nodo **raizS){
+    if(*raizS != NULL){
+
+    }
+}*/
+
+Nodo* ArbolBinarioB::buscar(int elemento, Nodo **raizS)
+    {
+        if (*raizS != NULL)
+        {
+            Nodo *a = *raizS;
+            if (elemento != a->obtenerItem())
+            {
+                if (a->obtenerItem() < elemento)
+                {
+                    a->obtenerDerecha(raizS);
+                }
+                else
+                {
+                    a->obtenerIzquierda(raizS);
+                }
+                return(buscar(elemento, raizS));
+            }
+            else
+            {
+                return(a);
+            }
+        }
+    }
 
 void ArbolBinarioB::InOrden(Nodo **raizS){
     if(*raizS != NULL)
