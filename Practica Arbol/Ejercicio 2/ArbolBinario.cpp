@@ -9,7 +9,7 @@ public:
     void insertar(int element, Nodo **raizS);
     int suprimir(int elemento, Nodo **raizS);
     Nodo *buscar(int elemento, Nodo **raizS);
-    int nivel();
+    int nivel(int elemento, Nodo **raizS, bool *bandera);
     bool hoja(int elemento, int elemento2);
     bool hijo(int elemento, int elemento2);
     bool padre(int elemento);
@@ -65,28 +65,58 @@ Nodo* ArbolBinarioB::buscar(int elemento, Nodo **raizS){
 }*/
 
 Nodo* ArbolBinarioB::buscar(int elemento, Nodo **raizS)
+{
+    if (*raizS != NULL)
     {
-        if (*raizS != NULL)
+        Nodo *a = *raizS;
+        if (elemento != a->obtenerItem())
         {
-            Nodo *a = *raizS;
-            if (elemento != a->obtenerItem())
+            if (a->obtenerItem() < elemento)
             {
-                if (a->obtenerItem() < elemento)
-                {
-                    a->obtenerDerecha(raizS);
-                }
-                else
-                {
-                    a->obtenerIzquierda(raizS);
-                }
-                return(buscar(elemento, raizS));
+                a->obtenerDerecha(raizS);
             }
             else
             {
-                return(a);
+                a->obtenerIzquierda(raizS);
             }
+            return(buscar(elemento, raizS));
+        }
+        else
+        {
+            return(a);
         }
     }
+}
+
+int ArbolBinarioB::nivel(int elemento, Nodo **raizS,bool *bandera){
+    if (*raizS != NULL)
+    {
+        Nodo *a = *raizS;
+        if (elemento != a->obtenerItem())
+        {
+            
+            if (a->obtenerItem() < elemento)
+            {
+                a->obtenerDerecha(raizS);
+            }
+            else
+            {
+                a->obtenerIzquierda(raizS);
+            }
+            return(1 + nivel(elemento, raizS, bandera));
+        }
+        else
+        {
+            return(1);
+        }
+    }
+    else
+    {
+        *bandera = false;
+        return(0);
+    }
+    
+}
 
 void ArbolBinarioB::InOrden(Nodo **raizS){
     if(*raizS != NULL)
