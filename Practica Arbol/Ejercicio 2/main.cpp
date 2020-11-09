@@ -9,5 +9,6 @@ int main(int argc, char const *argv[])
     arbol.getRaiz(aux);
     arbol.insertar(5, aux);
     arbol.insertar(10, aux);
+    arbol.insertar(6, aux);
     arbol.InOrden(aux);
 }

@@ -91,7 +91,7 @@ void ArbolBinarioB::PostOrden(Nodo **raizS){
         InOrden(raizS);
         cout<<a->obtenerItem()<<endl;
 	}
-
+}
 /*void ArbolBinarioB::InOrden(Nodo *raiz){
     cout<<"busca"<<endl;
 	if(raiz != NULL)
