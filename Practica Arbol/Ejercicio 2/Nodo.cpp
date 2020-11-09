@@ -3,12 +3,25 @@
 
 using namespace std;
 
+class Nodo{
+private:     //a partir de aquí todos los miembros serán privados
+    int item;
+    Nodo *izq, *der;
 
-Nodo::Nodo(int xitem= 0, Nodo *izquierda= NULL, Nodo *derecha= NULL)
+public:      //a patir de aquí todas las declaraciones serán de acceso público
+    Nodo();
+    int obtenerItem(void);
+    void cargaItem(int xitem);
+    void obtenerIzquierda(Nodo **&x);
+    void cargarIzquierda(Nodo *izquierda);
+    void obtenerDerecha(Nodo **&x);
+    void cargarDerecha(Nodo *derecha);
+};
+
+Nodo::Nodo()
 {
-    item = xitem;
-    izq = izquierda;
-    der = derecha;
+    izq = NULL;
+    der = NULL;
 }
 
 int Nodo::obtenerItem(void)
@@ -21,9 +34,9 @@ void Nodo::cargaItem(int xitem)
     item = xitem;
 }
 
-Nodo* Nodo::obtenerIzquierda(void)
+void Nodo::obtenerIzquierda(Nodo **&x)
 {
-    return(izq);
+        x = &izq;
 }
 
 void Nodo::cargarIzquierda(Nodo *izquierda)
@@ -31,9 +44,9 @@ void Nodo::cargarIzquierda(Nodo *izquierda)
     izq = izquierda;
 }
 
-Nodo* Nodo::obtenerDerecha(void)
+void Nodo::obtenerDerecha(Nodo **&x)
 {
-    return(der);
+        x = &der;
 }
 
 void Nodo::cargarDerecha(Nodo *derecha)

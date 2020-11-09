@@ -4,8 +4,10 @@
 
 int main(int argc, char const *argv[])
 {
+    Nodo **aux;
     ArbolBinarioB arbol = ArbolBinarioB();
-    arbol.insertar(5, arbol.getRaiz(), True);
-    arbol.insertar(10, arbol.getRaiz());
-    arbol.InOrden(arbol.getRaiz());
+    arbol.getRaiz(aux);
+    arbol.insertar(5, aux);
+    arbol.insertar(10, aux);
+    arbol.InOrden(aux);
 }
