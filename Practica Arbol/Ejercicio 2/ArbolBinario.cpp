@@ -6,19 +6,19 @@ private:
     Nodo *raiz;
 public:
     ArbolBinarioB();
-    void insertar(int element, Nodo **raizS);
+    void insertar(int element, Nodo **raizS);  //resuelto
     int suprimir(int elemento, Nodo **raizS);
-    Nodo *buscar(int elemento, Nodo **raizS);
-    int nivel(int elemento, Nodo **raizS, bool *bandera);
+    Nodo *buscar(int elemento, Nodo **raizS);  //resuelto
+    int nivel(int elemento, Nodo **raizS, bool *bandera);  //resuelto
     bool hoja(int elemento, int elemento2);
     bool hijo(int elemento, int elemento2);
     bool padre(int elemento);
     int *camino(int inicio, int destino);
     int altura(int elemento);
-    void InOrden(Nodo **raizS);
-    void PreOrden(Nodo **raiz);
-    void PostOrden(Nodo **raiz);
-    void getRaiz(Nodo **&x);
+    void InOrden(Nodo **raizS);  //resuelto
+    void PreOrden(Nodo **raiz);  //resuelto
+    void PostOrden(Nodo **raiz);  //resuelto
+    void getRaiz(Nodo **&x); //resuelto
 };
 
 ArbolBinarioB::ArbolBinarioB()
