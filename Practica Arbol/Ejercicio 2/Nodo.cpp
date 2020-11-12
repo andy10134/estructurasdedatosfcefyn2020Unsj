@@ -21,7 +21,7 @@ void Nodo::cargaItem(int xitem)
 
 void Nodo::obtenerIzquierda(Nodo **&x)
 {
-        x = &izq;
+    x = &izq;
 }
 
 void Nodo::cargarIzquierda(Nodo *izquierda)
@@ -37,4 +37,18 @@ void Nodo::obtenerDerecha(Nodo **&x)
 void Nodo::cargarDerecha(Nodo *derecha)
 {
     der = derecha;
+}
+
+int Nodo::obtenerGrado()
+{
+    if( izq!= NULL &&  der!= NULL)
+    {
+        return(2);
+    }else if( izq!= NULL || der!=NULL)
+    {
+        return(1);
+    }else
+    {
+        return(0);
+    }
 }

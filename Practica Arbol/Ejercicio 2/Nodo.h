@@ -17,5 +17,6 @@ public:      //a patir de aquí todas las declaraciones serán de acceso públic
     void cargarIzquierda(Nodo *izquierda);
     void obtenerDerecha(Nodo **&x);
     void cargarDerecha(Nodo *derecha);
+    int obtenerGrado();
 };
 #endif

@@ -7,7 +7,7 @@ private:
 public:
     ArbolBinarioB();
     void insertar(int element, Nodo **raizS);
-    int suprimir(int elemento, Nodo **raizS);
+    void suprimir(int elemento, Nodo **raizS);
     Nodo *buscar(int elemento);
     int nivel();
     bool hoja(int elemento, int elemento2);
@@ -29,6 +29,17 @@ ArbolBinarioB::ArbolBinarioB()
 void ArbolBinarioB::getRaiz(Nodo **&x)
 {
     x = &raiz;
+}
+
+void ArbolBinarioB::suprimir(int elemento, Nodo **raizS)
+{
+    if(raiz != NULL)
+    {
+        Nodo *ant, aux;
+    }else
+    {
+        cout << "Arbol vacio" << endl;
+    }
 }
 
 void ArbolBinarioB::insertar(int elemento, Nodo **raizS)
