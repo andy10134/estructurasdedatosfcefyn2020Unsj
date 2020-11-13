@@ -7,14 +7,14 @@ private:
 public:
     ArbolBinarioB();
     void insertar(int element, Nodo **raizS);  //resuelto
-    int suprimir(int elemento, Nodo **raizS);
+    void suprimir(int elemento, Nodo **raizS);
     Nodo *buscar(int elemento, Nodo **raizS);  //resuelto
     int nivel(int elemento, Nodo **raizS, bool *bandera);  //resuelto
-    bool hoja(int elemento, int elemento2);
-    bool hijo(int elemento, int elemento2);
-    bool padre(int elemento);
-    int *camino(int inicio, int destino);
-    int altura(int elemento);
+    bool hoja(int elemento, Nodo **raizS); //resuelto
+    bool hijo(int elemento, int elemento2, Nodo **raizS); //resuelto
+    bool padre(int elemento, int elemento2, Nodo **raizS); //resuelto
+    void camino(int elemento, Nodo *ancestro, bool &bandera,int *arreglo, int &cont);
+    int altura(Nodo **raizS, int altura);
     void InOrden(Nodo **raizS);  //resuelto
     void PreOrden(Nodo **raiz);  //resuelto
     void PostOrden(Nodo **raiz);  //resuelto
@@ -68,12 +68,6 @@ void ArbolBinarioB::insertar(int elemento, Nodo **raizS)
     }
 }
 
-/*
-Nodo* ArbolBinarioB::buscar(int elemento, Nodo **raizS){
-    if(*raizS != NULL){
-
-    }
-}*/
 
 Nodo* ArbolBinarioB::buscar(int elemento, Nodo **raizS)
 {
@@ -129,6 +123,116 @@ int ArbolBinarioB::nivel(int elemento, Nodo **raizS,bool *bandera){
     
 }
 
+bool ArbolBinarioB::hoja(int elemento, Nodo **raizS){
+    Nodo* nodo = buscar(elemento, raizS);
+    if(nodo != NULL){
+        if(nodo->obtenerGrado() == 0){
+            return(true);
+        }
+        return(false);
+    }
+    else
+    {
+        cout<<"no se encontro el nodo"<<endl;
+    }
+}
+
+bool ArbolBinarioB::hijo(int elemento, int padre, Nodo **raizS){
+    Nodo* nodo = buscar(padre, raizS);
+    if(nodo != NULL){
+        Nodo** aux;
+        nodo->obtenerDerecha(aux);
+        Nodo* hijo = *aux;
+        if(hijo->obtenerItem() == elemento){
+            return(true);
+        }
+        nodo->obtenerIzquierda(aux);
+        hijo = *aux;
+        if(hijo->obtenerItem() == elemento){
+            return(true);
+        }
+        else
+        {
+            return(false);
+        }
+    }
+    else
+    {
+        cout<<"no se encontro el nodo"<<endl;
+    }
+}
+
+bool ArbolBinarioB::padre(int elemento, int padre, Nodo **raizS){
+    Nodo* nodo = buscar(padre, raizS);
+    if(nodo != NULL){
+        Nodo** aux;
+        nodo->obtenerDerecha(aux);
+        Nodo* hijo = *aux;
+        if(hijo->obtenerItem() == elemento){
+            return(true);
+        }
+        nodo->obtenerIzquierda(aux);
+        hijo = *aux;
+        if(hijo->obtenerItem() == elemento){
+            return(true);
+        }
+        else
+        {
+            return(false);
+        }
+    }
+    else
+    {
+        cout<<"no se encontro el nodo"<<endl;
+    }
+}
+
+void ArbolBinarioB::camino(int elemento, Nodo* aux, bool &bandera, int *arreglo, int &cont){
+    if (aux != NULL)
+    {
+        arreglo[cont] = aux->obtenerItem();
+        Nodo **a;
+        if(aux->obtenerItem() != elemento){
+            if (aux->obtenerItem() < elemento)
+            {
+                aux->obtenerDerecha(a);
+            }
+            else
+            {
+                aux->obtenerIzquierda(a);
+            }
+            return(camino(elemento, *a, bandera, arreglo, cont+=1));
+        }  
+    }
+    else
+    {
+        bandera = false;
+    }
+}
+
+
+int ArbolBinarioB::altura(Nodo **raizS, int max){
+    if(*raizS != NULL)
+    {
+        Nodo *a = *raizS;
+        Nodo** b;
+        getRaiz(b);
+        bool bandera= true;
+        int n = nivel(a->obtenerItem(), b, &bandera);
+        if(n > max){
+            max = n;
+        }
+        a->obtenerIzquierda(raizS);
+        altura(raizS, max);
+        a->obtenerDerecha(raizS);
+        altura(raizS, max);
+    }
+    else
+    {
+        return(max);
+    }
+}
+
 void ArbolBinarioB::InOrden(Nodo **raizS){
     if(*raizS != NULL)
     {
@@ -147,9 +251,9 @@ void ArbolBinarioB::PreOrden(Nodo **raizS){
         Nodo *a = *raizS;
         cout<<a->obtenerItem()<<endl;
         a->obtenerIzquierda(raizS);
-        InOrden(raizS);
+        PreOrden(raizS);
         a->obtenerDerecha(raizS);
-        InOrden(raizS);
+        PreOrden(raizS);
 	}
 }
 
@@ -158,9 +262,9 @@ void ArbolBinarioB::PostOrden(Nodo **raizS){
 	{
 		Nodo *a = *raizS;
         a->obtenerIzquierda(raizS);
-        InOrden(raizS);
+        PostOrden(raizS);
         a->obtenerDerecha(raizS);
-        InOrden(raizS);
+        PostOrden(raizS);
         cout<<a->obtenerItem()<<endl;
 	}
 }
