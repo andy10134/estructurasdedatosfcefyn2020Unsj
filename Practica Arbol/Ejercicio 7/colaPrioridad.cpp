@@ -1,7 +1,6 @@
 class colaPrioridad
 {
 private:
-    int tope;
     int *items;
     int maximo;
 public:
@@ -12,8 +11,9 @@ public:
 
 colaPrioridad::colaPrioridad(int cantidad)
 {
-    tope = 1;
     maximo = cantidad;
     items = new int[cantidad];
+    items[0] = 1;
 }
+
 
