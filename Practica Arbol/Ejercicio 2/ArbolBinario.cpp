@@ -7,8 +7,8 @@ private:
 public:
     ArbolBinarioB();
     void insertar(int element, Nodo **raizS);  //resuelto
-    void suprimir(int elemento, Nodo **raizS);
-    Nodo *buscar(int elemento, Nodo **raizS);  //resuelto
+    void suprimir(Nodo **raizS, int elemento);
+    Nodo *buscar(int elemento,Nodo **raizS);  //resuelto
     int nivel(int elemento, Nodo **raizS, bool *bandera);  //resuelto
     bool hoja(int elemento, Nodo **raizS); //resuelto
     bool hijo(int elemento, int elemento2, Nodo **raizS); //resuelto
@@ -31,17 +31,114 @@ void ArbolBinarioB::getRaiz(Nodo **&x)
     x = &raiz;
 }
 
-void ArbolBinarioB::suprimir(int elemento, Nodo **raizS)
+void ArbolBinarioB::suprimir(Nodo **raizL, int x)
 {
-    if(raiz != NULL)
-    {
-        Nodo *ant, aux;
-    }else
-    {
-        cout << "Arbol vacio" << endl;
-    }
-}
+	Nodo **raizS = raizL;
+	if (*raizS != NULL)
+	{
+		int izqder;
+		Nodo *padre, *hijo;
+		padre=NULL;
+		hijo=*raizS;
+		while(hijo->obtenerItem() != x && hijo != NULL)
+		{
+			padre=hijo;
+			if(hijo->obtenerItem() < x)
+			{
+				hijo->obtenerDerecha(raizS);
+				izqder=1;
+			}else
+			{
+				hijo->obtenerIzquierda(raizS);
+				izqder=0;
+			}
+			hijo=*raizS;
+		}
+		if (hijo != NULL)
+		{
+			switch(hijo->obtenerGrado())
+			{
+				case 0:
+					if(hijo == *raizL)
+					{
+						*raizL = NULL;
+					}else{
+						if(izqder == 1)
+						{
+							padre->cargarDerecha(NULL);
+						}else{
+							padre->cargarIzquierda(NULL);
+						}	
+					}
+					delete(hijo);
+					break;
+				
+				case 1:
+					hijo->obtenerDerecha(raizS);
+					if(*raizS==NULL)
+					{
+						hijo->obtenerIzquierda(raizS);
+					}
+					if(hijo == *raizL)
+					{
+						*raizL = *raizS;
+					}else{
+						if(izqder == 1)
+						{
+							padre->cargarDerecha(*raizS);
+						}else{
+							padre->cargarIzquierda(*raizS);
+						}
+					}
+					delete(hijo);
+					break;
+					
+				case 2:
+					
+					Nodo *nuevo = hijo;
+					Nodo *nodo;
+					int izd=0;
+			        nuevo -> obtenerIzquierda(raizS);
+    			    while (*raizS != NULL)
+    			    {
+    			    	izd++;
+    			    	nodo = nuevo;
+        			    nuevo = *raizS;
+        			    nuevo -> obtenerDerecha(raizS);
+       				}
+       				nuevo->obtenerIzquierda(raizS);
+        			
+       				if(izd < 2)
+       				{
+       					nodo -> cargarIzquierda(*raizS);
+					}else{
+						nodo -> cargarDerecha(*raizS);
+					}
+        			
+        			
+        			
+        			hijo->obtenerDerecha(raizS);
+        			nuevo ->cargarDerecha(*raizS);
+        			hijo->obtenerIzquierda(raizS);
+        			nuevo->cargarIzquierda(*raizS);
 
+					if(hijo == *raizL)
+					{
+						*raizL = nuevo;
+					}else{
+						if(izqder == 1)
+						{
+							padre->cargarDerecha(nuevo);
+						}else{
+							padre->cargarIzquierda(nuevo);
+						}
+					}
+					delete(hijo);
+					break;
+			}
+		}
+	}
+}
 void ArbolBinarioB::insertar(int elemento, Nodo **raizS)
 {
 
