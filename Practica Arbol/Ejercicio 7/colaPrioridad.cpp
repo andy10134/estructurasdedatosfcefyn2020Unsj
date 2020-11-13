@@ -1,3 +1,8 @@
+#include <iostream>;
+
+using namespace std;
+
+
 class colaPrioridad
 {
 private:
@@ -13,7 +18,18 @@ colaPrioridad::colaPrioridad(int cantidad)
 {
     maximo = cantidad;
     items = new int[cantidad];
-    items[0] = 1;
+    items[0] = 0;
+}
+
+void colaPrioridad::suprimir()
+{
+    if (items[0] > 0)
+    {
+
+    }else
+    {
+        cout << "El arbol esta vacio"  << endl;
+    }    
 }
 
 void colaPrioridad::insertar(int elemento){
