@@ -50,8 +50,8 @@ void colaPrioridad::suprimir()
                 }
             }else
             {
-                aux = items[i*2];
-                items[i*2] = items[i];
+                aux = items[i*2+1];
+                items[i*2+1] = items[i];
                 items[i] = aux; 
             }
             
