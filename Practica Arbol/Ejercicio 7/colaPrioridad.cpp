@@ -31,14 +31,28 @@ void colaPrioridad::suprimir()
 
         int i = 1;
         int aux;
-        while (items[i] > items[i*2] || items[i] > items[i*2+1] && i < items[0])
+        while (items[i] > items[i*2] && i*2 < items[0])
         {       
-            if (items[i*2] > items[i*2+1])
+            if (items[0] >= i*2+1)
             {
+                if(items[i*2] < items[i*2+1])
+                {
+                    aux = items[i*2];
+                    items[i*2] = items[i];
+                    items[i] = aux; 
+                    i = i*2;
+                }else
+                {
+                aux = items[i*2+1];
+                items[i*2+1] = items[i];
+                items[i] = aux; 
                 i = i*2+1;
-            } else
+                }
+            }else
             {
-                i = i*2;
+                aux = items[i*2];
+                items[i*2] = items[i];
+                items[i] = aux; 
             }
             
         }
