@@ -13,4 +13,7 @@ int main(int argc, char const *argv[])
     cola.insertar(60);
     cola.insertar(15);
     cola.mostrar();
+    cout<<"------------"<<endl;
+    cola.suprimir();
+    cola.mostrar();
 }

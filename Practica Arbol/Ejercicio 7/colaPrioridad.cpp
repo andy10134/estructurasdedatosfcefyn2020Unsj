@@ -86,5 +86,4 @@ void colaPrioridad::mostrar(){
     {
         cout<<items[i]<<endl;
     }
-    cout<<items[0]<<endl;
 }
