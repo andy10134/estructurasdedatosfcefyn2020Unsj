@@ -25,7 +25,27 @@ void colaPrioridad::suprimir()
 {
     if (items[0] > 0)
     {
+        items[1] = items[items[0]];
+        items[0]--;
 
+        int i = 1;
+        int aux;
+        while (items[i] > items[i*2] && i < items[0])
+        {
+            aux = items[i*2];
+            items[i*2] = items[i];
+            items[i] = aux; 
+            i = i*2;
+        }
+
+        while (items[i] < items[i*2+1] && i < items[0])
+        {
+            aux = items[i*2];
+            items[i*2] = items[i];
+            items[i] = aux; 
+            i = i*2 + 1;
+        }
+        
     }else
     {
         cout << "El arbol esta vacio"  << endl;
