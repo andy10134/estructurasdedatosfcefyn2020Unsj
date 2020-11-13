@@ -1,4 +1,4 @@
-#include <iostream>;
+#include <iostream>
 
 using namespace std;
 
@@ -12,6 +12,7 @@ public:
     colaPrioridad(int cantidad);
     void suprimir();
     void insertar(int elemento);
+    void mostrar();
 };
 
 colaPrioridad::colaPrioridad(int cantidad)
@@ -33,8 +34,9 @@ void colaPrioridad::suprimir()
 }
 
 void colaPrioridad::insertar(int elemento){
-     if(items[0] < maximo)
+    if(items[0] < maximo)
     {
+        items[0]++;
         int i= items[0];
         items[i] = elemento;
         while(i!=1 && items[i/2] > elemento)
@@ -45,6 +47,14 @@ void colaPrioridad::insertar(int elemento){
             items[i] = aux;
             i = i/2;
         }
-        items[0]++;
     }
+}
+
+void colaPrioridad::mostrar(){
+    int i;
+    for (i = 1; i <= items[0]; i++)
+    {
+        cout<<items[i]<<endl;
+    }
+    cout<<items[0]<<endl;
 }
