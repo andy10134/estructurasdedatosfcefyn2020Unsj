@@ -16,4 +16,19 @@ colaPrioridad::colaPrioridad(int cantidad)
     items[0] = 1;
 }
 
-
+void colaPrioridad::insertar(int elemento){
+     if(items[0] < maximo)
+    {
+        int i= items[0];
+        items[i] = elemento;
+        while(i!=1 && items[i/2] > elemento)
+        {
+            int aux;
+            aux = items[i/2];
+            items[i/2] = elemento;
+            items[i] = aux;
+            i = i/2;
+        }
+        items[0]++;
+    }
+}
