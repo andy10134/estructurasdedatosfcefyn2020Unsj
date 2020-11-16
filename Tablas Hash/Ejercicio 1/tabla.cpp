@@ -72,16 +72,19 @@ int tablaHash::buscar(int elemento)
     }else
     {   
         int aux2 = (aux+1)%max;
-        while (aux != aux2 && items[aux2] == elemento)
+        while (aux != aux2 && items[aux2] == -1 && items[aux2] == elemento)
         {
             aux2 = (aux2+1)%max;     
         }
-        
         if (aux2 == aux)
         {
             cout << "No se encontro el elemento" << endl;
             return(-1);
-        }else 
+        }else if (items[aux2] == -1)
+        {
+            cout << "No se encontro el elemento, hay un pozo" << endl;
+            return(-1);
+        }else        
         {
             cout << "Se encontro el elemento" << endl;
             return(aux2);
