@@ -10,12 +10,13 @@ private:     //a partir de aquí todos los miembros serán privados
     Nodo *izq, *der;
 
 public:      //a patir de aquí todas las declaraciones serán de acceso público
-    Nodo(int xitem, Nodo *izquierda, Nodo *derecha);
+    Nodo();
     int obtenerItem(void);
     void cargaItem(int xitem);
-    Nodo *obtenerIzquierda(void);
+    void obtenerIzquierda(Nodo **&x);
     void cargarIzquierda(Nodo *izquierda);
-    Nodo *obtenerDerecha(void);
+    void obtenerDerecha(Nodo **&x);
     void cargarDerecha(Nodo *derecha);
+    int obtenerGrado();
 };
 #endif

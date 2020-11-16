@@ -3,12 +3,10 @@
 
 using namespace std;
 
-
-Nodo::Nodo(int xitem= 0, Nodo *izquierda= NULL, Nodo *derecha= NULL)
+Nodo::Nodo()
 {
-    item = xitem;
-    izq = izquierda;
-    der = derecha;
+    izq = NULL;
+    der = NULL;
 }
 
 int Nodo::obtenerItem(void)
@@ -21,9 +19,9 @@ void Nodo::cargaItem(int xitem)
     item = xitem;
 }
 
-Nodo* Nodo::obtenerIzquierda(void)
+void Nodo::obtenerIzquierda(Nodo **&x)
 {
-    return(izq);
+    x = &izq;
 }
 
 void Nodo::cargarIzquierda(Nodo *izquierda)
@@ -31,12 +29,26 @@ void Nodo::cargarIzquierda(Nodo *izquierda)
     izq = izquierda;
 }
 
-Nodo* Nodo::obtenerDerecha(void)
+void Nodo::obtenerDerecha(Nodo **&x)
 {
-    return(der);
+        x = &der;
 }
 
 void Nodo::cargarDerecha(Nodo *derecha)
 {
     der = derecha;
+}
+
+int Nodo::obtenerGrado()
+{
+    if( izq!= NULL &&  der!= NULL)
+    {
+        return(2);
+    }else if( izq!= NULL || der!=NULL)
+    {
+        return(1);
+    }else
+    {
+        return(0);
+    }
 }
