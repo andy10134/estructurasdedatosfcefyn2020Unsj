@@ -10,7 +10,7 @@ private:
     int max;
 public:
     tablaHash(int cantidad);
-    void buscar(int elemento);
+    int buscar(int elemento);
     void insertar(int elemento);
 };
 
@@ -55,5 +55,35 @@ void tablaHash::insertar(int elemento)
         }
         
         
+    }   
+}
+
+
+int tablaHash::buscar(int elemento)
+{
+    int i=0, aux;
+
+    aux = elemento%max;
+
+    if (items[aux] == elemento)
+    {
+        return(aux);
+    }else
+    {   
+        int aux2 = (aux+1)%max;
+        while (aux != aux2 && items[aux2] == elemento)
+        {
+            aux2 = (aux2+1)%max;     
+        }
+        
+        if (aux2 == aux)
+        {
+            cout << "No se encontro el elemento" << endl;
+            return(-1);
+        }else 
+        {
+            cout << "Se encontro el elemento" << endl;
+            return(aux2);
+        }
     }   
 }
