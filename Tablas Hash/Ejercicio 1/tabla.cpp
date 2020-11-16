@@ -61,33 +61,35 @@ void tablaHash::insertar(int elemento)
 
 int tablaHash::buscar(int elemento)
 {
-    int i=0, aux;
+    int i=0, aux, cont = 1;
 
     aux = elemento%max;
 
     if (items[aux] == elemento)
     {
-        cout << "Se encontro el elemento" << endl;
+        cout << "Se encontro el elemento, cont:" <<cont<<endl;
         return(aux);
     }else
     {   
         int aux2 = (aux+1)%max;
         while (aux != aux2 && items[aux2] == -1 && items[aux2] == elemento)
         {
+            cont ++;
             aux2 = (aux2+1)%max;     
         }
         if (aux2 == aux)
         {
-            cout << "No se encontro el elemento" << endl;
+            cout << "No se encontro el elemento, cont:" <<cont<< endl;
             return(-1);
         }else if (items[aux2] == -1)
         {
-            cout << "No se encontro el elemento, hay un pozo" << endl;
+            cout << "No se encontro el elemento, cont:" <<cont<< endl;
             return(-1);
         }else        
         {
-            cout << "Se encontro el elemento" << endl;
+            cout << "Se encontro el elemento, cont:" <<cont<< endl;
             return(aux2);
         }
     }   
 }
+
