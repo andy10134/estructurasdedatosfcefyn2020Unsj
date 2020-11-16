@@ -67,6 +67,7 @@ int tablaHash::buscar(int elemento)
 
     if (items[aux] == elemento)
     {
+        cout << "Se encontro el elemento" << endl;
         return(aux);
     }else
     {   
