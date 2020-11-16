@@ -36,10 +36,10 @@ void tablaHash::insertar(int elemento)
         items[aux] = elemento;
     }else
     {   
-        int aux2 = (aux2-1)%max;
+        int aux2 = (aux2+1)%max;
         while (aux != aux2 && items[aux2] != -1 && items[aux2] == elemento)
         {
-            aux2 = (aux2-1)%max;           
+            aux2 = (aux2+1)%max;           
         }
         
         if (aux2 == aux)
