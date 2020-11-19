@@ -16,11 +16,11 @@ public:
     void insertar(int elemento);
 };
 
-tablaHash::hash(int elemento)
+int tablaHash::hash(int elemento)
 {
-    elemento = (elemento/10)+(elemento%10)
+    elemento = (elemento/10)+(elemento%10);
     if(elemento > 337){
-        
+        elemento = elemento%337;
     }
     return(elemento);
 }
