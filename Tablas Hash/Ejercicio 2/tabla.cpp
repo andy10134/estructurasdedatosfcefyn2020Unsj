@@ -18,7 +18,7 @@ public:
 
 int tablaHash::hash(int elemento)
 {
-    elemento = (elemento/10)+(elemento%10);
+    elemento = (elemento/1000)+(elemento%1000);
     if(elemento > 337){
         elemento = elemento%337;
     }
