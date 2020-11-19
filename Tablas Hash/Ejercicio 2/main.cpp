@@ -14,4 +14,5 @@ int main(int argc, char const *argv[])
         random = rand()%1001;
         tabla.insertar(random);
     }
+    tabla.mostrar();
 }

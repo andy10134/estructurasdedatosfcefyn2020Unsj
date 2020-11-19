@@ -14,6 +14,7 @@ public:
     int buscar(int elemento);
     int hash(int elemento);
     void insertar(int elemento);
+    void mostrar(void);
 };
 
 tablaHash::tablaHash(int cantidad)
@@ -34,11 +35,31 @@ int tablaHash::hash(int elemento)
 void tablaHash::insertar(int elemento)
 {
     int clave = hash(elemento);
-    items[clave].insertar(elemento, 1);
+    int i = buscar(elemento);
+    if(i)
+    {
+        items[clave].insertar(elemento, 1);
+        cout<<"el elemento ya esta en la lista"<<endl;
+    }
+    else
+    {
+        cout<<"el elemento ya esta en la lista"<<endl;
+    }
+    
 }
 
 int tablaHash::buscar(int elemento)
 {
     int clave = hash(elemento);
-    items[clave].buscar(elemento);
+    int i = items[clave].buscar(elemento);
+    return(i);
+}
+
+void tablaHash::mostrar(){
+    int i;
+    for (i = 0; i < max; i++)
+    {
+        items[i].mostrar();
+        cout<<"-----------------"<<endl;
+    }
 }
