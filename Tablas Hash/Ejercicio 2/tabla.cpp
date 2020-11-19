@@ -16,6 +16,12 @@ public:
     void insertar(int elemento);
 };
 
+tablaHash::tablaHash(int cantidad)
+{
+    max = cantidad;
+    items = new ListaEnlazada[max];
+}
+
 int tablaHash::hash(int elemento)
 {
     elemento = (elemento/1000)+(elemento%1000);
@@ -25,8 +31,14 @@ int tablaHash::hash(int elemento)
     return(elemento);
 }
 
-tablaHash::tablaHash(int cantidad)
+void tablaHash::insertar(int elemento)
 {
-    max = cantidad;
-    items = new ListaEnlazada[max];
+    int clave = hash(elemento);
+    items[clave].insertar(elemento, 1);
+}
+
+int tablaHash::buscar(int elemento)
+{
+    int clave = hash(elemento);
+    items[clave].buscar(elemento);
 }
