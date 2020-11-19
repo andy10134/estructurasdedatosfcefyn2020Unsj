@@ -12,8 +12,18 @@ private:
 public:
     tablaHash(int cantidad);
     int buscar(int elemento);
+    int hash(int elemento);
     void insertar(int elemento);
 };
+
+tablaHash::hash(int elemento)
+{
+    elemento = (elemento/10)+(elemento%10)
+    if(elemento > 337){
+        
+    }
+    return(elemento);
+}
 
 tablaHash::tablaHash(int cantidad)
 {
