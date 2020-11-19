@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 
     for ( i = 0; i < aux; i++)
     {
-        random = rand()%5;
-            
+        random = rand()%1001;
+        tabla.insertar(random);
     }
 }

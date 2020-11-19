@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Lista.cpp"
+#include "ListaEnlazada.cpp"
 
 using namespace std;
 
@@ -7,7 +7,7 @@ using namespace std;
 class tablaHash
 {
 private:
-    Lista *items;
+    ListaEnlazada *items;
     int max;
 public:
     tablaHash(int cantidad);
@@ -18,10 +18,5 @@ public:
 tablaHash::tablaHash(int cantidad)
 {
     max = cantidad;
-    items = new Lista[max];
-    int i;
-    for (i = 0; i < max; i++)
-    {
-        items[i].cerear();
-    }
+    items = new ListaEnlazada[max];
 }
