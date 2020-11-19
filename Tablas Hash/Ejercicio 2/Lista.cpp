@@ -4,7 +4,7 @@
 using namespace std;
 
 //Constructor
-  Lista::Lista(int cantMax) // Constructor
+  Lista::Lista(int cantMax = 3) // Constructor
 {
     this -> cantidadMax = cantMax;
     this -> items = new int[cantMax];
@@ -157,4 +157,12 @@ void Lista::recorrer(void)
         cout << this -> items[ i ] << endl;
     }
     
+}
+
+void Lista::cerear(void){
+    int i;
+    for ( i = 0; i <= this -> tope ; i++)
+    {
+        this -> items[i] = -1;
+    }
 }
