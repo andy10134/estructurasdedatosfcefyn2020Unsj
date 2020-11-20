@@ -208,12 +208,12 @@ int ListaEnlazada::buscar(int elemento){
         if(aux == NULL)
         {
             cout<<"No se encontro el elemento en la lista"<<endl;
-            return(1);
+            return(-1);
         }
         else
         {
             //cout<<"Se encontro el elemento en la posicion "<<cont<<" de la lista"<<endl;
-            return(0);
+            return(elemento);
         }
     }
 }
