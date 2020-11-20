@@ -35,15 +35,9 @@ int tablaHash::hash(int elemento)
 void tablaHash::insertar(int elemento)
 {
     int clave = hash(elemento);
-    Celda *aux;
-    int cont=1;
-    aux = items[clave].getcabeza();
-    while (aux!=NULL && aux->obtenerItem() != elemento)
-    { 
-        aux = aux->obtenerSig();
-    }
-    if(aux == NULL)
-    {
+    int i = buscar(elemento);
+    if(i)
+    {   
         items[clave].insertar(elemento, 1);
     }
     else
