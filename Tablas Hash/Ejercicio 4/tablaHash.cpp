@@ -11,7 +11,7 @@ struct bucket
 class tablaHash
 {
 private:
-    bucket *items;
+    bucket *buckets;
 public:
     tablaHash();
     int hash(int elemento);
@@ -21,36 +21,79 @@ public:
 
 tablaHash::tablaHash()
 {
-    items = new bucket[211];
+    buckets = new bucket[211];
+
+    int i;
+
+    for (i = 0; i < 211; i++)
+    {
+        buckets[i].contador = 0;        
+    }
 }
 
 void tablaHash::insertar(int elemento)
 {
     int clave = hash(elemento);
+    int i = 0, j = 200, contador;
 
-    if (items[clave].contador < 5)
+    while (i < 5 && i < buckets[clave].contador && buckets[clave].items[i] != elemento )
     {
-        items[clave].items[items[clave].contador] = elemento;
-        items[clave].contador++;
-    }else
+        i++;
+    }
+
+    if (i == 5)
     {
-        int i = 200;
-        while (i < 211 && items[i].contador > 5)
+        contador = 5;
+        i=0;
+
+        while (contador != buckets[clave].contador && buckets[j].items[i] != elemento)
         {
+
+            if (clave == hash(buckets[j].items[i]))
+            {
+                contador++;
+            }
+            
             i++;
+            if (i == 5)
+            {
+                i = 0;
+                j++;
+            }
         }
 
-        if (i != 211)
-        {
-            items[i].items[items[i].contador] = elemento;
-            items[i].contador++;
-            items[clave].contador++;
+        if (contador == buckets[clave].contador)
+        {   
+            while (j < 211 && buckets[j].contador == 5)
+            {
+                j++;
+            }
+
+            if (j < 211)
+            {
+                buckets[j].items[buckets[j].contador] = elemento;
+                buckets[j].contador++;
+            }else
+            {
+                cout << "Overflow lleno" << endl;
+            }
+
+
         }else
         {
-            cout << "Overflow Lleno" << endl;
+            cout << "El elemento ya existia" << endl;
+        }
+
+    }else
+    {
+        if (i == buckets[clave].contador)
+        {    
+            buckets[clave].items[buckets[clave].contador] = elemento;
+            buckets[clave].contador++;
+        }else
+        {
+            cout << "El elemento ya existia" << endl;
         }
         
     }
-    
-    
 }
