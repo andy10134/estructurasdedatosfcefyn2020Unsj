@@ -60,7 +60,6 @@ int tablaHash::buscar(int elemento)
 
 void tablaHash::mostrar(){
     int i;
-    cout<<"oaoaoaoaoaoaoaoaoaoaoao"<<endl;
     for (i = 0; i < max; i++)
     {
         items[i].mostrar();
