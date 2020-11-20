@@ -14,6 +14,22 @@ int ListaEnlazada::vacia(void)
     return( this -> cant == 0);
 }
 
+int ListaEnlazada::elementos()
+{
+    int i=0;
+
+    Celda * aux = cabeza;
+
+    while (aux != NULL)
+    {
+        aux = aux ->obtenerSig();
+        i++;
+    }
+    
+    return i;
+}
+
+
 int ListaEnlazada::insertar(int elemento, int posicion){
     if (posicion > 0 && posicion <= this -> cant +1)
     {
