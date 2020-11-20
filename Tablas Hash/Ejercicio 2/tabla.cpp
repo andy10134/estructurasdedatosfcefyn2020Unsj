@@ -35,8 +35,14 @@ int tablaHash::hash(int elemento)
 void tablaHash::insertar(int elemento)
 {
     int clave = hash(elemento);
-    int i = buscar(elemento);
-    if(i)
+    Celda *aux;
+    int cont=1;
+    aux = items[clave].getcabeza();
+    while (aux!=NULL && aux->obtenerItem() != elemento)
+    { 
+        aux = aux->obtenerSig();
+    }
+    if(aux == NULL)
     {
         items[clave].insertar(elemento, 1);
     }
@@ -44,7 +50,6 @@ void tablaHash::insertar(int elemento)
     {
         cout<<"el elemento ya esta en la lista"<<endl;
     }
-    
 }
 
 int tablaHash::buscar(int elemento)
@@ -55,6 +60,7 @@ int tablaHash::buscar(int elemento)
 
 void tablaHash::mostrar(){
     int i;
+    cout<<"oaoaoaoaoaoaoaoaoaoaoao"<<endl;
     for (i = 0; i < max; i++)
     {
         items[i].mostrar();

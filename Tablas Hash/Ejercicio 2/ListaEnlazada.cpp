@@ -172,6 +172,7 @@ void ListaEnlazada::mostrar(void)
         cout<<aux->obtenerItem()<<endl;
         aux = aux->obtenerSig();
     }
+    cout<<"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"<<endl;
 }
 
 int ListaEnlazada::buscar(int elemento){
@@ -202,3 +203,7 @@ int ListaEnlazada::buscar(int elemento){
     }
 }
 
+Celda* ListaEnlazada::getcabeza(void)
+{
+    return(this->cabeza);
+}

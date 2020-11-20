@@ -20,6 +20,7 @@ public:      //a patir de aquí todas las declaraciones serán de acceso públic
   int siguiente(int posicion); // devuelven la posicion(cont)
   int anterior(int posicion);
   void mostrar(void); //
+  Celda* getcabeza(void);
 };
 
 #endif
