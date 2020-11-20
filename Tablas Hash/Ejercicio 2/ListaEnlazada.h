@@ -21,6 +21,7 @@ public:      //a patir de aquí todas las declaraciones serán de acceso públic
   int anterior(int posicion);
   void mostrar(void); //
   Celda* getcabeza(void);
+  int elementos(void);
 };
 
 #endif
