@@ -39,7 +39,6 @@ void tablaHash::insertar(int elemento)
     if(i)
     {
         items[clave].insertar(elemento, 1);
-        cout<<"el elemento ya esta en la lista"<<endl;
     }
     else
     {
@@ -51,8 +50,7 @@ void tablaHash::insertar(int elemento)
 int tablaHash::buscar(int elemento)
 {
     int clave = hash(elemento);
-    int i = items[clave].buscar(elemento);
-    return(i);
+    return(items[clave].buscar(elemento));
 }
 
 void tablaHash::mostrar(){
@@ -61,5 +59,6 @@ void tablaHash::mostrar(){
     {
         items[i].mostrar();
         cout<<"-----------------"<<endl;
+
     }
 }
