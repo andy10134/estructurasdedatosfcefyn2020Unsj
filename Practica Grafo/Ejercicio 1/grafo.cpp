@@ -9,7 +9,16 @@ private:
     int cantMax;
     int ** enlaces;
 public:
-    Grafo(int cant, int xenlaces[][], string xnodos[]);
+    Grafo(int cant,  int xenlaces[][], string xnodos[]);
+    void adyacentes(string u);
+    void grado();
+    void camino(string u,string v);
+    void caminoMinimo(string u,string v);
+    void conexo();
+    void aciclico();
+    void arbolRecubrimiento();
+    void REA();
+    void REP();
 };
 
 Grafo::Grafo(int cant, int xenlaces[][], string xnodos[])
@@ -40,5 +49,26 @@ Grafo::Grafo(int cant, int xenlaces[][], string xnodos[])
         {
             enlaces[i][j] = xenlaces[i][j];
         }
+    }
+}
+
+void Grafo::adyacentes(string u)
+{
+    u = u-1;
+    if ( u > -1 && u < cant)
+    {
+        int i;
+        cout<<"Nodos adyacentes"<<endl;
+        for (i=0 ; i < cant; i++)
+        {
+            if (enlaces[u][i] == 1){
+                cout<<"Nodo: "<<i+1<<endl;
+            }
+            
+        }
+    }
+    else
+    {
+    cout<<"El nodo ingresado es incorrecto"<<endl;
     }
 }
