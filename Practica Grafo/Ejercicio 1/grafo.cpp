@@ -12,9 +12,9 @@ public:
     Grafo(int cantNodos);
 };
 
-Grafo::Grafo(int cant)
+Grafo::Grafo(int cant, int xenlaces[][], string xnodos[])
 {
-    int i; 
+    int i,j; 
 
     cantMax = cant;
     nodos = new string[cantMax];
@@ -25,4 +25,18 @@ Grafo::Grafo(int cant)
         enlaces[i] = new int[cantMax];
     }
     
+    //carga de nodos
+    for (i = 0; i < cantMax; i++)
+    {
+        nodos[i] = xnodos[i];
+    }
+
+    //carga de enlaces
+    for (i = 0; i < cantMax; i++)
+    {
+        for (j = 0; i < cantMax; j++)
+        {
+            enlaces[i][j] = xenlaces[i][j];
+        }
+    }
 }
