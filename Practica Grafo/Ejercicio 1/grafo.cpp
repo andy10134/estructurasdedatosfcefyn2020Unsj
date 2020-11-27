@@ -9,7 +9,7 @@ private:
     int cantMax;
     int ** enlaces;
 public:
-    Grafo(int cantNodos);
+    Grafo(int cant, int xenlaces[][], string xnodos[]);
 };
 
 Grafo::Grafo(int cant, int xenlaces[][], string xnodos[])
@@ -18,6 +18,8 @@ Grafo::Grafo(int cant, int xenlaces[][], string xnodos[])
 
     cantMax = cant;
     nodos = new string[cantMax];
+
+    //creacion de matriz
     enlaces = new int*[cantMax];
 
     for (i = 0; i < cantMax; i++)
