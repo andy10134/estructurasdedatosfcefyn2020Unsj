@@ -7,14 +7,22 @@ class Grafo
 private:
     string *nodos;
     int cantMax;
-    int * enlaces;
+    int ** enlaces;
 public:
     Grafo(int cantNodos);
 };
 
 Grafo::Grafo(int cant)
 {
+    int i; 
+
     cantMax = cant;
     nodos = new string[cantMax];
-    enlaces = new int[cantMax][cantMax];
+    enlaces = new int*[cantMax];
+
+    for (i = 0; i < cantMax; i++)
+    {
+        enlaces[i] = new int[cantMax];
+    }
+    
 }
