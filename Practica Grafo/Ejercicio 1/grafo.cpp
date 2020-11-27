@@ -12,6 +12,7 @@ public:
     Grafo(int cant);
     void relacionar(string nodo, string nodo1);
     void adyacentes(string nodo);
+    void carganodos(string xnodos[5]);
     int grado(string nodo);
     void camino(string u,string v);
     void caminoMinimo(string u,string v);
@@ -53,10 +54,20 @@ Grafo::Grafo(int cant)
     }
 }
 
+void Grafo::carganodos(string xnodos[5])
+{
+    int i;
+    for (i = 0; i < cantMax; i++)
+    {
+        nodos[i] = xnodos[i];
+    }
+}
+
 //Relacionar matriz
 void Grafo::relacionar(string nodo, string nodo2)
 {
-    int aux = encontrarNodo(nodo, nodos, cantMax), aux2 = encontrarNodo(nodo2, nodos, cantMax);
+    int aux = encontrarNodo(nodo, nodos, cantMax);
+    int aux2 = encontrarNodo(nodo2, nodos, cantMax);
 
 	enlaces[aux][aux2] = 1; 
 	enlaces[aux2][aux] = 1;
