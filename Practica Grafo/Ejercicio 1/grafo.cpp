@@ -11,9 +11,8 @@ private:
 public:
     Grafo(int cant);
     void relacionar(string nodo, string nodo1);
-    void adyacentes(string u);
-    void adyacentes(string u);
-    void grado();
+    void adyacentes(string nodo);
+    int grado(string nodo);
     void camino(string u,string v);
     void caminoMinimo(string u,string v);
     void conexo();
@@ -84,14 +83,14 @@ int encontrarNodo(string nodo, string arr[], int cant)
 
 void Grafo::adyacentes(string u)
 {
-    u = u-1;
-    if ( u > -1 && u < cant)
+    int nodo = encontrarNodo(u, nodos, cantMax);
+    if ( nodo > -1 && nodo < cantMax)
     {
         int i;
         cout<<"Nodos adyacentes"<<endl;
-        for (i=0 ; i < cant; i++)
+        for (i=0 ; i < cantMax; i++)
         {
-            if (enlaces[u][i] == 1){
+            if (enlaces[nodo][i] == 1){
                 cout<<"Nodo: "<<i+1<<endl;
             }
             
@@ -100,5 +99,26 @@ void Grafo::adyacentes(string u)
     else
     {
     cout<<"El nodo ingresado es incorrecto"<<endl;
+    }
+}
+
+int Grafo::grado(string u)
+{
+    int nodo = encontrarNodo(u, nodos, cantMax);
+    if ( nodo > -1 && nodo < cantMax)
+    {
+        int i, cont;
+        for (i=0 ; i < cantMax; i++)
+        {
+            if (enlaces[nodo][i] == 1){
+                cont ++;
+            }
+        }
+        return(cont);
+    }
+    else
+    {
+    cout<<"El nodo ingresado es incorrecto"<<endl;
+    return(-1);
     }
 }
