@@ -9,9 +9,15 @@ private:
     int cantMax;
     int ** enlaces;
 public:
+<<<<<<< HEAD
     Grafo(int cant, int xenlaces[][], string xnodos[]);
     void relacionar(string nodo, string nodo);
     void adyacentes(string u);
+=======
+    Grafo(int cant,  int xenlaces[][], string xnodos[]);
+    void adyacentes(string u);
+    void grado();
+>>>>>>> a5f5d411fba6e67e12653fd8c3cafbd1f5b9e899
     void camino(string u,string v);
     void caminoMinimo(string u,string v);
     void conexo();
@@ -78,4 +84,24 @@ int encontrarNodo(string nodo, string arr[], int cant)
         return(i);
     }
     
+}
+void Grafo::adyacentes(string u)
+{
+    u = u-1;
+    if ( u > -1 && u < cant)
+    {
+        int i;
+        cout<<"Nodos adyacentes"<<endl;
+        for (i=0 ; i < cant; i++)
+        {
+            if (enlaces[u][i] == 1){
+                cout<<"Nodo: "<<i+1<<endl;
+            }
+            
+        }
+    }
+    else
+    {
+    cout<<"El nodo ingresado es incorrecto"<<endl;
+    }
 }
