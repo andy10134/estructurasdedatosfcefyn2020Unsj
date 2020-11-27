@@ -71,7 +71,7 @@ int encontrarNodo(string nodo, string arr[], int cant)
 {
     int i = 0;
 
-    while (i < cant arr[i] != nodo)
+    while (i < cant && arr[i] != nodo)
     {
         i++;
     }
