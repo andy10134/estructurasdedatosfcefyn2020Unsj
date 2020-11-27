@@ -10,10 +10,11 @@ private:
     int ** enlaces;
 public:
     Grafo(int cant);
+    int encontrarNodo(string nodo);
     void relacionar(string nodo, string nodo1);
     void adyacentes(string nodo);
     int grado(string nodo);
-    void camino(string u,string v);
+    void camino(string u,string v, string xcamino, int visitados[]);
     void caminoMinimo(string u,string v);
     void conexo();
     void aciclico();
@@ -56,22 +57,22 @@ Grafo::Grafo(int cant)
 //Relacionar matriz
 void Grafo::relacionar(string nodo, string nodo2)
 {
-    int aux = encontrarNodo(nodo, nodos, cantMax), aux2 = encontrarNodo(nodo2, nodos, cantMax);
+    int aux = encontrarNodo(nodo), aux2 = encontrarNodo(nodo2);
 
 	enlaces[aux][aux2] = 1; 
 	enlaces[aux2][aux] = 1;
 }
 
-int encontrarNodo(string nodo, string arr[], int cant)
+int Grafo::encontrarNodo(string nodo)
 {
     int i = 0;
 
-    while (i < cant && arr[i] != nodo)
+    while (i < cantMax && nodos[i] != nodo)
     {
         i++;
     }
     
-    if (i == cant)
+    if (i == cantMax)
     {
         return(-1);
     }else
@@ -83,7 +84,7 @@ int encontrarNodo(string nodo, string arr[], int cant)
 
 void Grafo::adyacentes(string u)
 {
-    int nodo = encontrarNodo(u, nodos, cantMax);
+    int nodo = encontrarNodo(u);
     if ( nodo > -1 && nodo < cantMax)
     {
         int i;
@@ -102,9 +103,37 @@ void Grafo::adyacentes(string u)
     }
 }
 
+void Grafo::camino(string u,string v, string xcamino, int visitados[])
+{
+
+    if (u != v)
+    {
+        if (visitados[encontrarNodo(u)] != 1)
+        {          
+            int aux = encontrarNodo(u), i;
+            visitados[aux] = 1;
+            string caminoAux = "" ; 
+            xcamino.append(u);
+            caminoAux = xcamino;
+            for (i = 0; i < cantMax; i++)
+            {
+                if (enlaces[aux][i])
+                {
+                    camino(nodos[i], v, xcamino, visitados);
+                    xcamino = caminoAux;
+                }
+            }
+        }
+    }else
+    {
+        xcamino.append(v);
+        cout << xcamino << endl;
+    }
+}
+
 int Grafo::grado(string u)
 {
-    int nodo = encontrarNodo(u, nodos, cantMax);
+    int nodo = encontrarNodo(u);
     if ( nodo > -1 && nodo < cantMax)
     {
         int i, cont;
