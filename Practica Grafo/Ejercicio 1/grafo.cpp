@@ -10,6 +10,14 @@ private:
     int ** enlaces;
 public:
     Grafo(int cant, int xenlaces[][], string xnodos[]);
+    adyacentes(string u);
+    void camino(string u,string v);
+    void caminoMinimo(string u,string v);
+    void conexo();
+    void aciclico();
+    void arbolRecubrimiento();
+    void REA();
+    void REP();
 };
 
 Grafo::Grafo(int cant, int xenlaces[][], string xnodos[])
