@@ -44,8 +44,6 @@ void inicializar(int x[5][5], int p[])
 	relacionar(x, , );
 
 	cout << endl;
-
-	mostrar(x, p);
 }
 
 int main(int argc, char const *argv[])
