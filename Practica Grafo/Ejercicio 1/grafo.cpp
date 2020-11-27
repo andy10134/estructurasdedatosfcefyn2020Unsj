@@ -9,15 +9,11 @@ private:
     int cantMax;
     int ** enlaces;
 public:
-<<<<<<< HEAD
-    Grafo(int cant, int xenlaces[][], string xnodos[]);
-    void relacionar(string nodo, string nodo);
+    Grafo(int cant);
+    void relacionar(string nodo, string nodo1);
     void adyacentes(string u);
-=======
-    Grafo(int cant,  int xenlaces[][], string xnodos[]);
     void adyacentes(string u);
     void grado();
->>>>>>> a5f5d411fba6e67e12653fd8c3cafbd1f5b9e899
     void camino(string u,string v);
     void caminoMinimo(string u,string v);
     void conexo();
@@ -85,6 +81,7 @@ int encontrarNodo(string nodo, string arr[], int cant)
     }
     
 }
+
 void Grafo::adyacentes(string u)
 {
     u = u-1;
