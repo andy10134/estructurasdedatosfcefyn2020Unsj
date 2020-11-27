@@ -151,3 +151,59 @@ int Grafo::grado(string u)
     return(-1);
     }
 }
+
+void Grafo::conexo()
+{
+    int i, j, k;
+    int aux[cantMax][cantMax];
+    for (i=0; i<cantMax; i++)
+    {
+        for (j=0; j<cantMax; j++)
+        {
+            aux[i][j] = enlaces[i][j];
+        }
+    }
+    //warshall
+    for(int k = 0; k < cantMax; k++)
+    {
+        for(int i = 0; i < cantMax; i++)
+        {
+            for(int j = 0; j < cantMax; j++)
+            {
+                int dt = aux[i][k] + aux[k][j];
+                if(aux[i][j] < dt)
+                {
+                    aux[i][j] = dt;
+                }
+            }
+        }
+    }
+    
+    bool band = true;
+    while (i<cantMax)
+    {
+        while (j<cantMax)
+        {
+            if (i != j)
+            {
+                if (aux[i][j] == 0)
+                {
+                    band = false;
+                    j = cantMax;
+                    i = cantMax;
+                }
+            }
+            j++;
+        }
+        i++;
+    }
+
+    if(band){
+        cout<<"EL GRAFO ES CONEXO"<<endl;
+    }
+    else
+    {
+        cout<<"EL GRAFO NO ES CONEXO"<<endl;
+    }
+    
+}
