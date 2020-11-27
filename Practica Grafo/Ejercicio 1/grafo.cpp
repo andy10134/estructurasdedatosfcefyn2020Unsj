@@ -10,7 +10,8 @@ private:
     int ** enlaces;
 public:
     Grafo(int cant, int xenlaces[][], string xnodos[]);
-    adyacentes(string u);
+    void relacionar(string nodo, string nodo);
+    void adyacentes(string u);
     void camino(string u,string v);
     void caminoMinimo(string u,string v);
     void conexo();
@@ -20,7 +21,7 @@ public:
     void REP();
 };
 
-Grafo::Grafo(int cant, int xenlaces[][], string xnodos[])
+Grafo::Grafo(int cant)
 {
     int i,j; 
 
@@ -38,7 +39,7 @@ Grafo::Grafo(int cant, int xenlaces[][], string xnodos[])
     //carga de nodos
     for (i = 0; i < cantMax; i++)
     {
-        nodos[i] = xnodos[i];
+        nodos[i] = "";
     }
 
     //carga de enlaces
@@ -46,7 +47,35 @@ Grafo::Grafo(int cant, int xenlaces[][], string xnodos[])
     {
         for (j = 0; i < cantMax; j++)
         {
-            enlaces[i][j] = xenlaces[i][j];
+            enlaces[i][j] = 0;
         }
     }
+}
+
+//Relacionar matriz
+void Grafo::relacionar(string nodo, string nodo2)
+{
+    int aux = encontrarNodo(nodo, nodos, cantMax), aux2 = encontrarNodo(nodo2, nodos, cantMax);
+
+	enlaces[aux][aux2] = 1; 
+	enlaces[aux2][aux] = 1;
+}
+
+int encontrarNodo(string nodo, string arr[], int cant)
+{
+    int i = 0;
+
+    while (i < cant arr[i] != nodo)
+    {
+        i++;
+    }
+    
+    if (i == cant)
+    {
+        return(-1);
+    }else
+    {
+        return(i);
+    }
+    
 }
