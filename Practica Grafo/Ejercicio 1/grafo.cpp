@@ -173,7 +173,12 @@ void Grafo::conexo()
     {
         for (j=0; j<cantMax; j++)
         {
-            aux[i][j] = enlaces[i][j];
+            if(enlaces[i][j] == 0){
+                aux[i][j] = 1000;
+            }else
+            {
+                aux[i][j] = enlaces[i][j];
+            }
         }
     }
     //warshall
@@ -191,7 +196,8 @@ void Grafo::conexo()
             }
         }
     }
-    
+    i=0;
+    j=0;
     bool band = true;
     while (i<cantMax)
     {
@@ -199,7 +205,7 @@ void Grafo::conexo()
         {
             if (i != j)
             {
-                if (aux[i][j] == 0)
+                if (aux[i][j] == 1000)
                 {
                     band = false;
                     j = cantMax;
