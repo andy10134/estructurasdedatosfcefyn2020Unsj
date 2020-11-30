@@ -23,6 +23,7 @@ public:
     void arbolRecubrimiento();
     void REA();
     void REP();
+    int ** warshall();
 };
 
 Grafo::Grafo(int cant)
@@ -206,38 +207,10 @@ int Grafo::grado(string u)
 
 void Grafo::conexo()
 {
-    int i, j, k;
+    int i=0, j=0;
     int cantAux = cantAux;
-    int aux[cantMax][cantMax];
-    for (i=0; i<cantMax; i++)
-    {
-        for (j=0; j<cantMax; j++)
-        {
-            if(enlaces[i][j] == 0){
-                aux[i][j] = 1000;
-            }else
-            {
-                aux[i][j] = enlaces[i][j];
-            }
-        }
-    }
-    //warshall
-    for(int k = 0; k < cantMax; k++)
-    {
-        for(int i = 0; i < cantMax; i++)
-        {
-            for(int j = 0; j < cantMax; j++)
-            {
-                int dt = aux[i][k] + aux[k][j];
-                if(aux[i][j] > dt)
-                {
-                    aux[i][j] = dt;
-                }
-            }
-        }
-    }
-    i=0;
-    j=0;
+    int **aux;
+    aux = warshall();
     bool band = true;
     while (i<cantMax)
     {
@@ -266,3 +239,36 @@ void Grafo::conexo()
     }
     
 }
+
+int ** Grafo::warshall()
+    {
+        int i,j;
+        int **aux;
+        aux = new int*[5];
+
+        for (i = 0; i < cantMax; i++)
+        {
+            aux[i] = new int[cantMax];
+        }
+        for (i=0; i<cantMax; i++)
+        {
+            for (j=0; j<cantMax; j++)
+            {
+                if (enlaces[i][j] == 0)
+                {
+                    aux[i][j] = 1000;
+                }
+                else aux[i][j] = enlaces[i][j];
+            }
+        }
+        int dt;
+        for(int k = 0; k < cantMax; k++)
+            for(i = 0; i < cantMax; i++)
+                 for(j = 0; j < cantMax; j++)
+                {
+                      dt = aux[i][k] + aux[k][j];
+                      if(aux[i][j] > dt)
+                      aux[i][j] = dt;
+                }
+        return(aux);
+    }
