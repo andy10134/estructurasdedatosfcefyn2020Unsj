@@ -146,7 +146,41 @@ void Grafo::camino(string u,string v, string xcamino, int visitados[])
 
 void Grafo::caminoMinimo(string u, string v)
 {
+    ColaSecuencial cola = ColaSecuencial(cantMax);
+    string camino;
+    int aux = encontrarNodo(u), aux2 = encontrarNodo(v), *visitados = new int[cantMax], i, aux3;
+    camino = "";
 
+    for (i = 0; i < cantMax; i++)
+    {
+        visitados[i] = 999;
+    }
+    
+    visitados[aux] = 0;
+    cola.insertar(aux);
+
+    while (!cola.vacia())
+    {
+        aux3 = cola.suprimir();
+        for (i = 0; i < cantMax; i++)
+        {
+            if (enlaces[aux3][i] == 1)
+            {
+                if (visitados[i] == 999)
+                {
+                    visitados[i] = visitados[aux3] + 1;
+                    cola.insertar(i); 
+                }
+                
+            }
+        }
+        
+    }
+
+    for (i = 0; i < cantMax; i++)
+    {
+        cout << visitados[i] << endl;
+    }   
 }
 
 int Grafo::grado(string u)
