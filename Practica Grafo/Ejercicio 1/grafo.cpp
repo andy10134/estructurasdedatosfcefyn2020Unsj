@@ -13,7 +13,7 @@ public:
     int encontrarNodo(string nodo);
     void relacionar(string nodo, string nodo1);
     void adyacentes(string nodo);
-    void carganodos(string xnodos[5]);
+    void cargaNodos(string xnodos[5]);
     int grado(string nodo);
     void camino(string u,string v, string xcamino, int visitados[]);
     void caminoMinimo(string u,string v);
@@ -48,14 +48,14 @@ Grafo::Grafo(int cant)
     //carga de enlaces
     for (i = 0; i < cantMax; i++)
     {
-        for (j = 0; i < cantMax; j++)
+        for (j = 0; j < cantMax; j++)
         {
             enlaces[i][j] = 0;
         }
     }
 }
 
-void Grafo::carganodos(string xnodos[5])
+void Grafo::cargaNodos(string xnodos[5])
 {
     int i;
     for (i = 0; i < cantMax; i++)
@@ -166,6 +166,7 @@ int Grafo::grado(string u)
 void Grafo::conexo()
 {
     int i, j, k;
+    int cantAux = cantAux;
     int aux[cantMax][cantMax];
     for (i=0; i<cantMax; i++)
     {
