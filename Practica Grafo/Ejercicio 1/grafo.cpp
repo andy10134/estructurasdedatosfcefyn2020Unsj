@@ -68,6 +68,7 @@ void Grafo::cargaNodos(string xnodos[5])
 //Relacionar matriz
 void Grafo::relacionar(string nodo, string nodo2)
 {
+
     int aux = encontrarNodo(nodo);
     int aux2 = encontrarNodo(nodo2);
 
@@ -178,7 +179,12 @@ void Grafo::conexo()
     {
         for (j=0; j<cantMax; j++)
         {
-            aux[i][j] = enlaces[i][j];
+            if(enlaces[i][j] == 0){
+                aux[i][j] = 1000;
+            }else
+            {
+                aux[i][j] = enlaces[i][j];
+            }
         }
     }
     //warshall
@@ -189,14 +195,15 @@ void Grafo::conexo()
             for(int j = 0; j < cantMax; j++)
             {
                 int dt = aux[i][k] + aux[k][j];
-                if(aux[i][j] < dt)
+                if(aux[i][j] > dt)
                 {
                     aux[i][j] = dt;
                 }
             }
         }
     }
-    
+    i=0;
+    j=0;
     bool band = true;
     while (i<cantMax)
     {
@@ -204,7 +211,7 @@ void Grafo::conexo()
         {
             if (i != j)
             {
-                if (aux[i][j] == 0)
+                if (aux[i][j] == 1000)
                 {
                     band = false;
                     j = cantMax;
