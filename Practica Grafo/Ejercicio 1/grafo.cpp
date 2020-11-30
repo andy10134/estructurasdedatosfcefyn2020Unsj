@@ -67,6 +67,7 @@ void Grafo::carganodos(string xnodos[5])
 //Relacionar matriz
 void Grafo::relacionar(string nodo, string nodo2)
 {
+
     int aux = encontrarNodo(nodo);
     int aux2 = encontrarNodo(nodo2);
 
@@ -182,7 +183,7 @@ void Grafo::conexo()
             for(int j = 0; j < cantMax; j++)
             {
                 int dt = aux[i][k] + aux[k][j];
-                if(aux[i][j] < dt)
+                if(aux[i][j] > dt)
                 {
                     aux[i][j] = dt;
                 }
