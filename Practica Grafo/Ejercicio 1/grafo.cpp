@@ -103,7 +103,7 @@ void Grafo::adyacentes(string u)
         for (i=0 ; i < cantMax; i++)
         {
             if (enlaces[nodo][i] == 1){
-                cout<<"Nodo: "<<i+1<<endl;
+                cout<<"Nodo: "<< nodos[i] <<endl;
             }
             
         }

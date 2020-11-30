@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    cout<<"hola"<<endl;
+	int visitados[5];
 	Grafo grafo = Grafo(5);
 	string nodos[5] = {"a", "b", "c", "d", "e"};
 	grafo.cargaNodos(nodos);
@@ -16,4 +16,6 @@ int main(int argc, char const *argv[])
 	grafo.relacionar("a", "c");
 	grafo.relacionar("d", "e");
 	grafo.adyacentes("a");
+	grafo.camino("a","d","", visitados);
+	grafo.conexo();
 }
