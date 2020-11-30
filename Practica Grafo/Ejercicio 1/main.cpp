@@ -6,7 +6,8 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    Grafo grafo = Grafo(5);
+    cout<<"hola"<<endl;
+	Grafo grafo = Grafo(5);
 	string nodos[5] = {"a", "b", "c", "d", "e"};
 	grafo.carganodos(nodos);
 	grafo.relacionar("a", "b");
