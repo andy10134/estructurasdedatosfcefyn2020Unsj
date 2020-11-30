@@ -1,4 +1,5 @@
 #include <iostream>
+#include "ColaSecuencial.cpp"
 
 using namespace std;
 
@@ -140,6 +141,11 @@ void Grafo::camino(string u,string v, string xcamino, int visitados[])
         xcamino.append(v);
         cout << xcamino << endl;
     }
+}
+
+void Grafo::caminoMinimo(string u, string v)
+{
+
 }
 
 int Grafo::grado(string u)
