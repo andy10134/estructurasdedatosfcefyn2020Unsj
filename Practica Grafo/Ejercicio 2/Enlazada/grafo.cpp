@@ -4,19 +4,21 @@
 
 using namespace std;
 
-class Grafo
+class DiGrafo
 {
 private:
     string *nodos;
     int cantMax;
     ListaEnlazada * enlaces;
 public:
-    Grafo(int cant);
+    DiGrafo(int cant);
     int encontrarNodo(string nodo);
     void relacionar(string nodo, string nodo1);
-    void adyacentes(string nodo);
+    void adyacentesEntrada(string nodo);
+    void adyacentesSalida(string nodo);
     void cargaNodos(string xnodos[5]);
-    int grado(string nodo);
+    int gradoEntrada(string nodo);
+    int gradoSalida(string nodo);
     void camino(string u,string v, string xcamino, int visitados[]);
     void caminoMinimo(string u,string v);
     bool conexo();
@@ -24,18 +26,21 @@ public:
     void arbolRecubrimiento();
     void REA();
     void REP();
-    int ** warshall();
     void mostrar();
+    
+    //?
+    bool verticeSumidero(string u);
+    bool verticeFuente(string u);
 };
 
-Grafo::Grafo(int cant)
+DiGrafo::DiGrafo(int cant)
 {
     int i,j; 
 
     cantMax = cant;
     nodos = new string[cantMax];
 
-    //creacion de matriz
+    //creacion de lista de adyacencia
     enlaces = new ListaEnlazada[cantMax];
 
     //carga de nodos
@@ -45,7 +50,7 @@ Grafo::Grafo(int cant)
     }
 }
 
-int Grafo::encontrarNodo(string nodo)
+int DiGrafo::encontrarNodo(string nodo)
 {
     int i = 0;
 
@@ -64,23 +69,23 @@ int Grafo::encontrarNodo(string nodo)
     
 }
 
-//Relacionar matriz
-void Grafo::relacionar(string nodo, string nodo2)
+//Relacionar lista
+void DiGrafo::relacionar(string nodo, string nodo2)
 {
     int aux = encontrarNodo(nodo);
     int aux2 = encontrarNodo(nodo2);
 
     enlaces[aux].insertar(aux2,1);
-    enlaces[aux2].insertar(aux,1);
 }
 
-void Grafo::adyacentes(string u)
+//Adyacentes salida
+void DiGrafo::adyacentesSalida(string u)
 {
     int nodo = encontrarNodo(u);
     if ( nodo > -1 && nodo < cantMax)
     {
         int i;
-        cout<<"Nodos adyacentes"<<endl;
+        cout<<"Nodos adyacentes salida"<<endl;
         for (i=1 ; i <= enlaces[nodo].largo(); i++)
         {
             cout << nodos[enlaces[nodo].recuperar(i)] << endl;            
@@ -92,7 +97,29 @@ void Grafo::adyacentes(string u)
     }
 }
 
-void Grafo::cargaNodos(string xnodos[5])
+//Adyacentes entrada
+void DiGrafo::adyacentesEntrada(string u)
+{
+    int nodo = encontrarNodo(u);
+    if ( nodo > -1 && nodo < cantMax)
+    {
+        int i;
+        cout<<"Nodos adyacentes entrada: "<<endl;
+        for (i = 0 ; i < cantMax; i++)
+        {
+            if (enlaces[i].buscar(nodo))
+            {
+                cout << nodos[i] << endl;
+            }  
+        }
+    }
+    else
+    {
+    cout<<"El nodo ingresado es incorrecto"<<endl;
+    }
+}
+
+void DiGrafo::cargaNodos(string xnodos[5])
 {
     int i;
     for (i = 0; i < cantMax; i++)
@@ -101,7 +128,8 @@ void Grafo::cargaNodos(string xnodos[5])
     }
 }
 
-int Grafo::grado(string u)
+//Grados de entrada 
+int DiGrafo::gradoSalida(string u)
 {
     int nodo = encontrarNodo(u);
     if ( nodo > -1 && nodo < cantMax)
@@ -115,7 +143,40 @@ int Grafo::grado(string u)
     }
 }
 
-void Grafo::camino(string u,string v, string xcamino, int visitados[])
+//Grados de Salida
+int DiGrafo::gradoEntrada(string u)
+{
+    int nodo = encontrarNodo(u);
+    if ( nodo > -1 && nodo < cantMax)
+    {
+        int i, grado = 0;
+        for (i = 0; i < cantMax; i++)
+        {
+            grado = grado + enlaces[i].buscar(nodo);
+        }
+        return(grado);
+    }
+    else
+    {
+    cout<<"El nodo ingresado es incorrecto"<<endl;
+    return(-1);
+    }
+}
+
+//Sumidero
+bool DiGrafo::verticeSumidero(string u)
+{
+    return(gradoEntrada(u) > 0  && gradoSalida(u) == 0);
+}
+
+//Fuente
+bool DiGrafo::verticeFuente(string u)
+{
+    return(gradoEntrada(u) == 0  && gradoSalida(u) > 0);
+}
+
+/*
+void DiGrafo::camino(string u,string v, string xcamino, int visitados[])
 {
 
     if (u != v)
@@ -143,8 +204,8 @@ void Grafo::camino(string u,string v, string xcamino, int visitados[])
     }
 }
 
-/*
-void Grafo::caminoMinimo(string u, string v)
+
+void DiGrafo::caminoMinimo(string u, string v)
 {
     ColaSecuencial cola = ColaSecuencial(cantMax);
     int aux = encontrarNodo(u), aux2 = encontrarNodo(v), *padre = new int[cantMax], *distancia = new int[cantMax], i, aux3;
@@ -201,7 +262,7 @@ void Grafo::caminoMinimo(string u, string v)
     
 }
 
-bool Grafo::conexo()
+bool DiGrafo::conexo()
 {
     int i=0, j=0;
     int cantAux = cantAux;
@@ -227,18 +288,18 @@ bool Grafo::conexo()
     }
 
     if(band){
-        cout<<"EL GRAFO ES CONEXO"<<endl;
+        cout<<"EL DiGRAFO ES CONEXO"<<endl;
         return true;
     }
     else
     {
-        cout<<"EL GRAFO NO ES CONEXO"<<endl;
+        cout<<"EL DiGRAFO NO ES CONEXO"<<endl;
         return false;
     }
     
 }
 
-int ** Grafo::warshall()
+int ** DiGrafo::warshall()
 {
     int i,j;
     int **aux;
@@ -271,7 +332,7 @@ int ** Grafo::warshall()
     return(aux);
 }
 */
-void Grafo::mostrar()
+void DiGrafo::mostrar()
 {
 	int i, j;
 

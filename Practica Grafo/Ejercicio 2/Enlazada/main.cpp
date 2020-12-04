@@ -7,7 +7,7 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
 	int visitados[5];
-	Grafo grafo = Grafo(5);
+	DiGrafo grafo = DiGrafo(5);
 	string nodos[5] = {"a", "b", "c", "d", "e"};
 	grafo.cargaNodos(nodos);
 	grafo.relacionar("a", "b");
@@ -20,5 +20,6 @@ int main(int argc, char const *argv[])
 	//grafo.camino("a","d","", visitados);
 	//grafo.conexo();
 	grafo.mostrar();
+	cout << grafo.gradoEntrada("a") << endl;
 	
 }
