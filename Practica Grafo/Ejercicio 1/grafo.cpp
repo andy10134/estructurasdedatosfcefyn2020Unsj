@@ -24,6 +24,7 @@ public:
     void REA();
     void REP();
     int ** warshall();
+    void mostrar();
 };
 
 Grafo::Grafo(int cant)
@@ -269,34 +270,51 @@ bool Grafo::conexo()
 }
 
 int ** Grafo::warshall()
-    {
-        int i,j;
-        int **aux;
-        aux = new int*[5];
+{
+    int i,j;
+    int **aux;
+    aux = new int*[5];
 
-        for (i = 0; i < cantMax; i++)
-        {
-            aux[i] = new int[cantMax];
-        }
-        for (i=0; i<cantMax; i++)
-        {
-            for (j=0; j<cantMax; j++)
-            {
-                if (enlaces[i][j] == 0)
-                {
-                    aux[i][j] = 1000;
-                }
-                else aux[i][j] = enlaces[i][j];
-            }
-        }
-        int dt;
-        for(int k = 0; k < cantMax; k++)
-            for(i = 0; i < cantMax; i++)
-                 for(j = 0; j < cantMax; j++)
-                {
-                      dt = aux[i][k] + aux[k][j];
-                      if(aux[i][j] > dt)
-                      aux[i][j] = dt;
-                }
-        return(aux);
+    for (i = 0; i < cantMax; i++)
+    {
+        aux[i] = new int[cantMax];
     }
+    for (i=0; i<cantMax; i++)
+    {
+        for (j=0; j<cantMax; j++)
+        {
+            if (enlaces[i][j] == 0)
+            {
+                aux[i][j] = 1000;
+            }
+            else aux[i][j] = enlaces[i][j];
+        }
+    }
+    int dt;
+    for(int k = 0; k < cantMax; k++)
+        for(i = 0; i < cantMax; i++)
+            for(j = 0; j < cantMax; j++)
+            {
+                dt = aux[i][k] + aux[k][j];
+                if(aux[i][j] > dt)
+                aux[i][j] = dt;
+            }
+    return(aux);
+}
+
+void Grafo::mostrar()
+{
+	int i, j;
+
+	cout << endl;
+
+	for ( i = 0; i < cantMax; i++)
+	{
+		cout << "    |";
+		for ( j = 0; j < cantMax; j++)
+		{
+			cout << " " << enlaces[i][j];
+		}
+		cout << " | " << nodos[i] << endl;
+	}
+}
