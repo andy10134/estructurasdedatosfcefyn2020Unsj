@@ -15,7 +15,5 @@ int main(int argc, char const *argv[])
 	grafo.relacionar("b", "d");
 	grafo.relacionar("a", "c");
 	grafo.relacionar("d", "e");
-	grafo.adyacentes("a");
-	grafo.camino("a","d","", visitados);
-	grafo.conexo();
+	grafo.caminoMinimo("a","c");
 }

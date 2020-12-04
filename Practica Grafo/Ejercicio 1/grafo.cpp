@@ -18,7 +18,7 @@ public:
     int grado(string nodo);
     void camino(string u,string v, string xcamino, int visitados[]);
     void caminoMinimo(string u,string v);
-    void conexo();
+    bool conexo();
     void aciclico();
     void arbolRecubrimiento();
     void REA();
@@ -69,7 +69,6 @@ void Grafo::cargaNodos(string xnodos[5])
 //Relacionar matriz
 void Grafo::relacionar(string nodo, string nodo2)
 {
-
     int aux = encontrarNodo(nodo);
     int aux2 = encontrarNodo(nodo2);
 
@@ -148,40 +147,58 @@ void Grafo::camino(string u,string v, string xcamino, int visitados[])
 void Grafo::caminoMinimo(string u, string v)
 {
     ColaSecuencial cola = ColaSecuencial(cantMax);
-    string camino;
-    int aux = encontrarNodo(u), aux2 = encontrarNodo(v), *visitados = new int[cantMax], i, aux3;
-    camino = "";
+    int aux = encontrarNodo(u), aux2 = encontrarNodo(v), *padre = new int[cantMax], *distancia = new int[cantMax], i, aux3;
+    bool encontrado = false, *visitados = new bool[cantMax];
 
     for (i = 0; i < cantMax; i++)
     {
-        visitados[i] = 999;
+        distancia[i] = 999;
+        padre[i] = -1;
+        visitados[i] = false;
     }
     
-    visitados[aux] = 0;
+    distancia[aux] = 0;
     cola.insertar(aux);
 
     while (!cola.vacia())
     {
         aux3 = cola.suprimir();
-        for (i = 0; i < cantMax; i++)
+        visitados[aux3] = true;
+
+        i = 0;
+        while( i < cantMax  )
         {
             if (enlaces[aux3][i] == 1)
             {
-                if (visitados[i] == 999)
+                if (!visitados[i])
                 {
-                    visitados[i] = visitados[aux3] + 1;
-                    cola.insertar(i); 
-                }
-                
+                    if (distancia[i] > distancia[aux3] + 1)
+                    {
+                        distancia[i] = distancia[aux3] + 1;
+                        padre[i] = aux3;
+                        
+                        cola.insertar(i); 
+                    }       
+                }        
             }
-        }
-        
+            i++;
+        }      
     }
 
     for (i = 0; i < cantMax; i++)
     {
-        cout << visitados[i] << endl;
-    }   
+        cout << padre[i] << endl;
+    }
+    
+    i = padre[aux2];
+    cout << nodos[aux2];
+
+    while (i != -1)
+    {
+        cout << " <-- " << nodos[i] ;
+        i = padre[i];
+    }
+    
 }
 
 int Grafo::grado(string u)
@@ -205,7 +222,16 @@ int Grafo::grado(string u)
     }
 }
 
-void Grafo::conexo()
+void Grafo::arbolRecubrimiento()
+{
+    if (conexo())
+    {
+        
+    }
+    
+}
+
+bool Grafo::conexo()
 {
     int i=0, j=0;
     int cantAux = cantAux;
@@ -232,10 +258,12 @@ void Grafo::conexo()
 
     if(band){
         cout<<"EL GRAFO ES CONEXO"<<endl;
+        return true;
     }
     else
     {
         cout<<"EL GRAFO NO ES CONEXO"<<endl;
+        return false;
     }
     
 }
