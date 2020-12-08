@@ -40,7 +40,7 @@ void ArbolBinarioB::suprimir(Nodo **raizL, int x)
 		Nodo *padre, *hijo;
 		padre=NULL;
 		hijo=*raizS;
-		while(hijo->obtenerItem() != x && hijo != NULL)
+		while(hijo != NULL && hijo->obtenerItem() != x)
 		{
 			padre=hijo;
 			if(hijo->obtenerItem() < x)
