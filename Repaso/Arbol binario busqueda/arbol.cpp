@@ -9,7 +9,6 @@ struct Nodo
     Nodo * der = NULL;
 };
 
-
 class ArbolBinarioB
 {
 private:
@@ -17,14 +16,15 @@ private:
 public:
     ArbolBinarioB(int dato);
     void insertar(int dato, Nodo ** raiz);
-    void suprimir(int dato, Nodo ** raiz);
+    void suprimir(int dato);
     Nodo * buscar(int dato, Nodo ** raiz);
     int nivel(int dato,int contador, Nodo ** raiz);
     bool hoja(int dato);
     bool hijo(int padre, int hijo);
     bool padre(int padre, int hijo, Nodo ** raiz);
-    void camino(int destino, Nodo ** raiz);
+    void camino(int origen,int destino);
     int altura();
+    void InOrden(Nodo **raizS);
     
     void mostrar();
     Nodo ** getRaiz();
@@ -65,29 +65,73 @@ void ArbolBinarioB::insertar(int dato, Nodo ** raiz)
     }    
 }
 
-void ArbolBinarioB::suprimir(int dato, Nodo ** raiz)
+void ArbolBinarioB::suprimir(int dato)
 {
-    Nodo * aux = *raiz;
-    
+    Nodo * aux , * padreEliminar ;
+    aux = this -> raiz;
+    bool izq = false;
+
+    while (aux != NULL && aux->dato != dato)
+    {
+        padreEliminar = aux;
+        
+        if (aux -> dato < dato)
+        {
+            aux = aux -> der;
+            izq = false;
+        }else
+        {
+            aux = aux -> izq;
+            izq = true;
+        }       
+    }
+
     if (aux == NULL)
     {
         cout << "No se ha encontrado el elemento en el arbol" << endl;
-    }else if (aux->dato != dato)
+    }else if (aux->der == NULL && aux->izq == NULL )
     {
-        if (aux->dato < dato)
+        if (izq)
         {
-            suprimir(dato, &(aux->der));
+            padreEliminar -> izq = NULL;
         }else
         {
-            suprimir(dato, &(aux->izq));
+            padreEliminar -> der = NULL;                
         }
-    }else
+        delete(aux);
+
+    }else if (aux->der == NULL || aux->izq == NULL )
     {
-        Nodo * nodoEliminar = new Nodo;
-        nodoEliminar = *raiz;
+        Nodo * nodoEliminar;
+        nodoEliminar = aux;
+        if (aux->der != NULL)
+        {
+            aux = aux->der; 
+        }else
+        {
+            aux = aux->izq; 
+        }
         delete(nodoEliminar);
-        *raiz = NULL; 
-    }    
+    } else
+    {
+        Nodo * nodoSucesor , *padre;
+        nodoSucesor = aux -> der;
+        padre = aux;
+
+        while (nodoSucesor -> izq != NULL)
+        {
+            padre = nodoSucesor;
+            nodoSucesor = nodoSucesor -> izq;
+        }
+        
+        if (nodoSucesor -> der != NULL)
+        {
+            padre -> izq = nodoSucesor -> der;
+        }
+        aux -> dato = nodoSucesor ->dato;        
+        
+        delete(nodoSucesor);
+    }        
 }
 
 Nodo * ArbolBinarioB::buscar(int dato, Nodo ** raiz)
@@ -100,10 +144,10 @@ Nodo * ArbolBinarioB::buscar(int dato, Nodo ** raiz)
         {
             if (dato > aux->dato)
             {
-                buscar(dato, &(aux->der));
+                return(buscar(dato, &(aux->der)));
             }else
             {
-                buscar(dato, &(aux->izq));
+                return(buscar(dato, &(aux->izq)));
             }
         }else
         {
@@ -166,10 +210,25 @@ bool ArbolBinarioB::hoja(int dato)
     }
 }
 
+
+void ArbolBinarioB::InOrden(Nodo **raizS){
+    
+    Nodo *aux = *raizS;
+
+    if(aux != NULL)
+    {
+        InOrden(&(aux -> izq));
+        cout<< aux -> dato <<endl;
+        InOrden(&(aux -> der));
+    }
+}
+
+/*
 bool ArbolBinarioB::hijo(int padre, int hijo)
 {
     
-}
+}*/
+
 void ArbolBinarioB::mostrar()
 {
     cout << "Fin";
