@@ -15,6 +15,9 @@ int main(int argc, char const *argv[])
     arbol.hoja(2);
     //arbol.suprimir(5);
     //arbol.InOrden(aux);
+    // Muestra todos los nodos arbol.PreOrden(aux);
+    arbol.PostOrden(aux);
+    arbol.altura(aux,0);
     arbol.mostrar();
     return 0;
 }

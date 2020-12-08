@@ -23,9 +23,12 @@ public:
     bool hijo(int padre, int hijo);
     bool padre(int padre, int hijo, Nodo ** raiz);
     void camino(int origen,int destino);
-    int altura();
+    int altura(Nodo **raizS, int max);
+
     void InOrden(Nodo **raizS);
-    
+    void PreOrden(Nodo **raizS);
+    void PostOrden(Nodo **raizS);
+
     void mostrar();
     Nodo ** getRaiz();
 };
@@ -172,23 +175,21 @@ int ArbolBinarioB::nivel(int dato,int contador, Nodo ** raiz)
 
             if (dato > aux->dato)
             {
-                nivel(dato, contador+1, &(aux->der));
+                return(nivel(dato, contador+1, &(aux->der)));
             }else
             {
-                nivel(dato, contador+1, &(aux->izq));
+                return(nivel(dato, contador+1, &(aux->izq)));
             }
         }else
         {
-            cout << "El nivel es " << contador << endl;
+            //cout << "El nivel es " << contador << endl;
             return(contador);
         }        
     }else
     {
-        cout << "No se ha encontrado el elemento" << endl;
+        //cout << "No se ha encontrado el elemento" << endl;
         return(0);
     }
-    
-    return(0);
 }
 
 bool ArbolBinarioB::hoja(int dato)
@@ -210,6 +211,17 @@ bool ArbolBinarioB::hoja(int dato)
     }
 }
 
+void ArbolBinarioB::PreOrden(Nodo **raizS){
+    
+    Nodo *aux = *raizS;
+
+    if(aux != NULL)
+    {
+        cout<< aux -> dato <<endl;
+        PreOrden(&(aux -> izq));
+        PreOrden(&(aux -> der));
+    }
+}
 
 void ArbolBinarioB::InOrden(Nodo **raizS){
     
@@ -223,13 +235,53 @@ void ArbolBinarioB::InOrden(Nodo **raizS){
     }
 }
 
-/*
+void ArbolBinarioB::PostOrden(Nodo **raizS){
+    
+    Nodo *aux = *raizS;
+
+    if(aux != NULL)
+    {
+        PostOrden(&(aux -> izq));
+        PostOrden(&(aux -> der));
+        cout<< aux -> dato <<endl;
+    }
+}
+
 bool ArbolBinarioB::hijo(int padre, int hijo)
 {
-    
-}*/
+    Nodo* aux = buscar(padre, getRaiz());
+    int xaux;
+
+    if (aux -> izq -> dato == padre || aux -> der -> dato == padre)
+    {
+        return(true);
+    }else return(false);
+}
 
 void ArbolBinarioB::mostrar()
 {
     cout << "Fin";
+}
+
+
+int ArbolBinarioB::altura(Nodo **raizS, int max){
+    
+    if(*raizS != NULL)
+    {
+        Nodo * aux = *raizS;
+        bool bandera= true;
+        int n = nivel(aux->dato,0,getRaiz());
+
+        if(n >= max){
+            max = n;
+        }
+        altura(&(aux->izq), max);
+        altura(&(aux->der), max);
+
+    }
+    else
+    {
+        cout << "La altura del arbol es de : " << max << endl;
+        return(max);
+    }
 }
