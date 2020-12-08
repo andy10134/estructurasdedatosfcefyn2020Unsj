@@ -30,7 +30,6 @@ int ListaEnlazada::insertar(int elemento, int posicion){
         if(vacia())
         {
             this -> cabeza = nuevo;
-            cout<<"SE INSERTO EL ELEMENTO EN LA PRIMERA POSICION PORQUE ESTA VACIA CAPO"<<endl;
         }
         else
         {
@@ -38,7 +37,6 @@ int ListaEnlazada::insertar(int elemento, int posicion){
             {
                 nuevo->cargaSig(this -> cabeza);
                 this -> cabeza = nuevo;
-                cout<<"SE INSERTO EL ELEMENTO EN LA PRIMERA POSICION"<<endl;
             }
             else
             {
@@ -52,7 +50,6 @@ int ListaEnlazada::insertar(int elemento, int posicion){
                 }
                 anterior->cargaSig(nuevo);
                 nuevo->cargaSig(aux);
-                cout<<"El elemento ha sido insertado en el lugar que corresponde"<<endl;
             }            
         }
         this -> cant ++;
