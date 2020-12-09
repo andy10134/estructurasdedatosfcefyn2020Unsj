@@ -31,6 +31,13 @@ tablaHash::tablaHash()
     }
 }
 
+int tablaHash::hash(int elemento)
+{
+    elemento = elemento%1000;
+    elemento = elemento%200;
+    return(elemento);
+}
+
 void tablaHash::insertar(int elemento)
 {
     int clave = hash(elemento);
